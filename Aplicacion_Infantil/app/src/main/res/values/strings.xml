@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Aplicacion Infantil</string>
+    <string name="btn_SonidoA">REPRODUCIR</string>
+    <string name="btn_regresar">REGRESAR AL INICIO</string>
+    <string name="txt_num1">SELECCIONA LETRA</string>
+    <string name="btn_siguiente">CONFIRMAR</string>
+</resources>
