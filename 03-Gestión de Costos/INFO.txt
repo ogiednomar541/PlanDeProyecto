@@ -1,6 +1,0 @@
-En esta carpeta se encuentra el Plan de Gestión de Costos.
-
-Inlcuye:
-  - Plan de gestión de costos
-  - Estimación de costos mediante COCOMO
-  - Estimación de costos mediante Puntos Función

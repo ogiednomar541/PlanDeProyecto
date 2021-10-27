@@ -1,5 +1,0 @@
-En esta carpeta se encuentra el Plan de Gestión de Tiempos.
-
-Inlcuye:
-  - Cronograma del proyecto
-  - Línea base del cronograma
