@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PrincipalModule } from './principal/principal.module';
+import { TucuentaModule } from './tucuenta/tucuenta.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PrincipalModule } from './principal/principal.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    PrincipalModule
+    PrincipalModule,
+    TucuentaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
