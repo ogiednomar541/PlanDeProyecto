@@ -1,33 +1,36 @@
 <nav class="navbar navbar-expand navbar-ligth bg-ligth">
-<div class="container" style="background-color:rgb(72, 190, 157);">
-    <br>
-    <a class="navbar-brand">CtrlGastos</a>
-    <div class="derecha" style="width:50%;">
-        <img class="imglogo" src="../assets/logo.jpg">
-        <aside class="nombreuser">usuario Admin Ejemplo</aside>
-    </div>
+    <div class="container" style="background-color:rgb(72, 190, 157);">
+        <br>
+        <a class="navbar-brand">CtrlGastos</a>
+        <div class="derecha" style="width:50%;">
+            <img class="imglogo" src="../assets/logo.jpg">
+            <aside class="nombreuser">usuario Admin Ejemplo</aside>
+        </div>
 
         <div class="container">
-            <br>                
+            <br>
             <ul class="nav justify-content-end" style="margin-right: 2%;">
                 <li class="nav-item">
-                    <a routerLink="/principal" routerLinkActive="active"  class="nav-link" style="color:white; background-color: gray;">Inicio</a>
+                    <a routerLink="/principal" routerLinkActive="active" class="nav-link" style="color:white; background-color: gray;">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/tucuenta" routerLinkActive="active" class="nav-link" style="color:white; background-color: gray;">Tu Cuenta</a>
                 </li>
-                
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color:white; background-color: gray;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Añadir un Gasto</a>
-                      <a class="dropdown-item" href="#">Crear un grupo</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Todos los gastos</a>
+                        <a class="dropdown-item" routerLink="/gastos/addgastos" routerLinkActive="active">Añadir un Gasto</a>
+                        <a class="dropdown-item" routerLink="/grupos" routerLinkActive="active">Crear un grupo</a>
+                        <!--
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Todos los gastos</a>
+                        -->
+
                     </div>
-                  </li>                
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white; background-color: gray;">Salir</a>
+                    <a class="nav-link" href="https://www.google.com.mx" style="color:white; background-color: gray;">Salir</a>
                 </li>
             </ul>
 
