@@ -11,7 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { PrincipalModule } from './principal/principal.module';
 import { TucuentaModule } from './tucuenta/tucuenta.module';
 import { GastosModule} from './gastos/gastos.module';
-
+import { LoginModule } from './login/login.module';
+import { RegistrarModule } from './registrar/registrar.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,9 @@ import { GastosModule} from './gastos/gastos.module';
     SharedModule,
     PrincipalModule,
     TucuentaModule,
-    GastosModule
+    GastosModule,
+    LoginModule,
+    RegistrarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
