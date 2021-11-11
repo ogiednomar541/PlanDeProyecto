@@ -1,28 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-//el header y el footer
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { PrincipalModule } from './principal/principal.module';
-import { TucuentaModule } from './tucuenta/tucuenta.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule,
-    SharedModule,
-    PrincipalModule,
-    TucuentaModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
