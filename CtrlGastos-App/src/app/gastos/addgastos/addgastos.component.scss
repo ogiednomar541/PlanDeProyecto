@@ -21,10 +21,10 @@ th {
 .frm_titulo {
     text-align: center;
     margin-top: 0;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
     margin-bottom: 30px;
-    background: #2454ad;
+    background: rgb(72, 190, 157);
 }
 
 .frm {
@@ -36,7 +36,7 @@ th {
     padding: 20px;
     box-shadow: 0 0 20px 1px rgb(0 0 0 / 30%);
     position: relative;
-    background: #2ea3da;
+    background: #ffffff;
 }
 
 .frm_submit {
@@ -45,7 +45,7 @@ th {
     padding: 10px;
     /* margin-left: 10%; */
     color: black;
-    background-color: gray;
+    background-color: rgb(72, 190, 157);
     cursor: pointer;
     border: none;
     border-color: black;
