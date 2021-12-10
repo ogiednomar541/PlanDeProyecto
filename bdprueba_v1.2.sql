@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 10-12-2021 a las 19:30:55
+-- Tiempo de generación: 10-12-2021 a las 20:43:53
 -- Versión del servidor: 8.0.27
 -- Versión de PHP: 7.4.26
 
@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-category`
+-- Estructura de tabla para la tabla `tbcategory`
 --
 
-DROP TABLE IF EXISTS `tb-category`;
-CREATE TABLE IF NOT EXISTS `tb-category` (
+DROP TABLE IF EXISTS `tbcategory`;
+CREATE TABLE IF NOT EXISTS `tbcategory` (
   `id-category` int NOT NULL AUTO_INCREMENT,
   `category` varchar(45) NOT NULL,
   `status` tinytext NOT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `tb-category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
 
 --
--- Volcado de datos para la tabla `tb-category`
+-- Volcado de datos para la tabla `tbcategory`
 --
 
-INSERT INTO `tb-category` (`id-category`, `category`, `status`) VALUES
+INSERT INTO `tbcategory` (`id-category`, `category`, `status`) VALUES
 (1, 'Casa', 'A'),
 (2, 'Comidas y bebidas', 'A'),
 (3, 'Entretenimiento', 'A'),
@@ -51,11 +51,11 @@ INSERT INTO `tb-category` (`id-category`, `category`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-friendship`
+-- Estructura de tabla para la tabla `tbfriendship`
 --
 
-DROP TABLE IF EXISTS `tb-friendship`;
-CREATE TABLE IF NOT EXISTS `tb-friendship` (
+DROP TABLE IF EXISTS `tbfriendship`;
+CREATE TABLE IF NOT EXISTS `tbfriendship` (
   `id-friendship` int NOT NULL AUTO_INCREMENT,
   `id-user-one` int NOT NULL,
   `id-user-two` int NOT NULL,
@@ -67,11 +67,11 @@ CREATE TABLE IF NOT EXISTS `tb-friendship` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-group`
+-- Estructura de tabla para la tabla `tbgroup`
 --
 
-DROP TABLE IF EXISTS `tb-group`;
-CREATE TABLE IF NOT EXISTS `tb-group` (
+DROP TABLE IF EXISTS `tbgroup`;
+CREATE TABLE IF NOT EXISTS `tbgroup` (
   `id-group` int NOT NULL AUTO_INCREMENT,
   `id-own` int NOT NULL,
   `group-name` varchar(45) NOT NULL,
@@ -83,11 +83,11 @@ CREATE TABLE IF NOT EXISTS `tb-group` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-group-member`
+-- Estructura de tabla para la tabla `tbgroupmember`
 --
 
-DROP TABLE IF EXISTS `tb-group-member`;
-CREATE TABLE IF NOT EXISTS `tb-group-member` (
+DROP TABLE IF EXISTS `tbgroupmember`;
+CREATE TABLE IF NOT EXISTS `tbgroupmember` (
   `id-group-member` int NOT NULL AUTO_INCREMENT,
   `id-group` int NOT NULL,
   `id-user` int NOT NULL,
@@ -100,63 +100,11 @@ CREATE TABLE IF NOT EXISTS `tb-group-member` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-movement`
+-- Estructura de tabla para la tabla `tbsubcategory`
 --
 
-DROP TABLE IF EXISTS `tb-movement`;
-CREATE TABLE IF NOT EXISTS `tb-movement` (
-  `id-movement` int NOT NULL AUTO_INCREMENT,
-  `id-who` int NOT NULL,
-  `id-origin` int DEFAULT NULL,
-  `id-dest` int DEFAULT NULL,
-  `id-group` int DEFAULT NULL,
-  `amount` decimal(10,0) DEFAULT NULL,
-  `executed` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `id-movement-type` int NOT NULL,
-  `id-category` int DEFAULT NULL,
-  `status` tinytext NOT NULL,
-  PRIMARY KEY (`id-movement`),
-  KEY `fk-movement-users_idx` (`id-who`),
-  KEY `fk-movement-users-origin_idx` (`id-origin`),
-  KEY `fk-movement-users-dest_idx` (`id-dest`),
-  KEY `fk-movement-group_idx` (`id-group`),
-  KEY `fk-movement-category_idx` (`id-category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tb-movement-type`
---
-
-DROP TABLE IF EXISTS `tb-movement-type`;
-CREATE TABLE IF NOT EXISTS `tb-movement-type` (
-  `id-movement-type` int NOT NULL AUTO_INCREMENT,
-  `movement-type` varchar(45) NOT NULL,
-  `status` tinytext NOT NULL,
-  PRIMARY KEY (`id-movement-type`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `tb-movement-type`
---
-
-INSERT INTO `tb-movement-type` (`id-movement-type`, `movement-type`, `status`) VALUES
-(1, 'Añadir persona a grupo', 'A'),
-(2, 'Añadir amigo', 'A'),
-(3, 'Añadir grupo', 'A'),
-(4, 'Añadir gasto', 'A'),
-(5, 'Registrar pago a mi cuenta', 'A'),
-(6, 'Registrar pago a otras cuentas', 'A');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tb-subcategory`
---
-
-DROP TABLE IF EXISTS `tb-subcategory`;
-CREATE TABLE IF NOT EXISTS `tb-subcategory` (
+DROP TABLE IF EXISTS `tbsubcategory`;
+CREATE TABLE IF NOT EXISTS `tbsubcategory` (
   `id-category` int NOT NULL,
   `id-subcategory` int NOT NULL AUTO_INCREMENT,
   `subcategory` varchar(45) NOT NULL,
@@ -166,10 +114,10 @@ CREATE TABLE IF NOT EXISTS `tb-subcategory` (
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `tb-subcategory`
+-- Volcado de datos para la tabla `tbsubcategory`
 --
 
-INSERT INTO `tb-subcategory` (`id-category`, `id-subcategory`, `subcategory`, `status`) VALUES
+INSERT INTO `tbsubcategory` (`id-category`, `id-subcategory`, `subcategory`, `status`) VALUES
 (1, 0, 'Alquiler', 'A'),
 (1, 1, 'Electrónica', 'A'),
 (1, 2, 'Hipoteca', 'A'),
@@ -216,11 +164,11 @@ INSERT INTO `tb-subcategory` (`id-category`, `id-subcategory`, `subcategory`, `s
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb-users`
+-- Estructura de tabla para la tabla `tbusers`
 --
 
-DROP TABLE IF EXISTS `tb-users`;
-CREATE TABLE IF NOT EXISTS `tb-users` (
+DROP TABLE IF EXISTS `tbusers`;
+CREATE TABLE IF NOT EXISTS `tbusers` (
   `id-users` int NOT NULL AUTO_INCREMENT,
   `nombre` tinytext NOT NULL,
   `mail` varchar(30) NOT NULL,
@@ -234,10 +182,10 @@ CREATE TABLE IF NOT EXISTS `tb-users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `tb-users`
+-- Volcado de datos para la tabla `tbusers`
 --
 
-INSERT INTO `tb-users` (`id-users`, `nombre`, `mail`, `user`, `pass`, `date-register`, `status`) VALUES
+INSERT INTO `tbusers` (`id-users`, `nombre`, `mail`, `user`, `pass`, `date-register`, `status`) VALUES
 (1, 'Brandon', 'prueba@gmail.com', 'brandon', '1234', '2021-12-08 07:00:00', 'A'),
 (2, 'Orlando', 'orlando@gmail.com', 'orlando', '1234', '2021-12-08 07:00:00', 'A'),
 (3, 'Saulo', 'saulo@gmail.com', 'saulo', '1234', '2021-12-08 07:00:00', 'A'),
@@ -249,35 +197,24 @@ INSERT INTO `tb-users` (`id-users`, `nombre`, `mail`, `user`, `pass`, `date-regi
 --
 
 --
--- Filtros para la tabla `tb-friendship`
+-- Filtros para la tabla `tbfriendship`
 --
-ALTER TABLE `tb-friendship`
-  ADD CONSTRAINT `fk-friendship-user-one` FOREIGN KEY (`id-user-one`) REFERENCES `tb-users` (`id-users`),
-  ADD CONSTRAINT `fk-friendship-user-two` FOREIGN KEY (`id-user-two`) REFERENCES `tb-users` (`id-users`);
+ALTER TABLE `tbfriendship`
+  ADD CONSTRAINT `fk-friendship-user-one` FOREIGN KEY (`id-user-one`) REFERENCES `tbusers` (`id-users`),
+  ADD CONSTRAINT `fk-friendship-user-two` FOREIGN KEY (`id-user-two`) REFERENCES `tbusers` (`id-users`);
 
 --
--- Filtros para la tabla `tb-group-member`
+-- Filtros para la tabla `tbgroupmember`
 --
-ALTER TABLE `tb-group-member`
-  ADD CONSTRAINT `fk-member-group` FOREIGN KEY (`id-group`) REFERENCES `tb-group` (`id-group`),
-  ADD CONSTRAINT `fk-member-users` FOREIGN KEY (`id-user`) REFERENCES `tb-users` (`id-users`);
+ALTER TABLE `tbgroupmember`
+  ADD CONSTRAINT `fk-member-group` FOREIGN KEY (`id-group`) REFERENCES `tbgroup` (`id-group`),
+  ADD CONSTRAINT `fk-member-users` FOREIGN KEY (`id-user`) REFERENCES `tbusers` (`id-users`);
 
 --
--- Filtros para la tabla `tb-movement`
+-- Filtros para la tabla `tbsubcategory`
 --
-ALTER TABLE `tb-movement`
-  ADD CONSTRAINT `fk-movement-category` FOREIGN KEY (`id-category`) REFERENCES `tb-category` (`id-category`),
-  ADD CONSTRAINT `fk-movement-group` FOREIGN KEY (`id-group`) REFERENCES `tb-group` (`id-group`),
-  ADD CONSTRAINT `fk-movement-type-movement` FOREIGN KEY (`id-movement`) REFERENCES `tb-movement-type` (`id-movement-type`),
-  ADD CONSTRAINT `fk-movement-users` FOREIGN KEY (`id-who`) REFERENCES `tb-users` (`id-users`),
-  ADD CONSTRAINT `fk-movement-users-dest` FOREIGN KEY (`id-dest`) REFERENCES `tb-users` (`id-users`),
-  ADD CONSTRAINT `fk-movement-users-origin` FOREIGN KEY (`id-origin`) REFERENCES `tb-users` (`id-users`);
-
---
--- Filtros para la tabla `tb-subcategory`
---
-ALTER TABLE `tb-subcategory`
-  ADD CONSTRAINT `fk-category-subcategory` FOREIGN KEY (`id-category`) REFERENCES `tb-category` (`id-category`);
+ALTER TABLE `tbsubcategory`
+  ADD CONSTRAINT `fk-category-subcategory` FOREIGN KEY (`id-category`) REFERENCES `tbcategory` (`id-category`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
