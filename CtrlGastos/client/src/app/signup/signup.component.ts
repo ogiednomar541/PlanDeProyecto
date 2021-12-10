@@ -11,29 +11,29 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  FormularioDeRegistro: FormGroup;
+  formularioDeUsuario: FormGroup;
   
   constructor(public formulario: FormBuilder,
     private APIphp: CtrlGastosServiceService,
     private ruteador: Router
     ) { 
-      this.FormularioDeRegistro = this.formulario.group({
-        Nombre: [''],
-        Email: [''],
-        FechaNac: [''],
-        Usuario: [''],
-        Contra: [''],
-        ConfContra: ['']
+      this.formularioDeUsuario = this.formulario.group({
+        nombre: [''],
+        email: [''],
+        fechanac: [''],
+        usuario: [''],
+        contra: [''],
+        confcontra: ['']
       });
     }
 
   ngOnInit(): void {
   }
 
-  Registrar(): any {
-    // console.log("Me presionaste ");
-    console.log(this.FormularioDeRegistro.value);
-    this.APIphp.RegistrarUsuario(this.FormularioDeRegistro.value).subscribe(respuesta => {
+  enviarDatos(): any {
+    console.log("Me presionaste ");
+    console.log(this.formularioDeUsuario.value);
+    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe(respuesta => {
       console.log(respuesta);
       this.ruteador.navigateByUrl('/login');
     });

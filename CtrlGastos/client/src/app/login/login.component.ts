@@ -19,8 +19,8 @@ export class LoginComponent {
   ingresar(user: string, password: string){
     
     console.log(user + password);
-    this.ruteador.navigateByUrl('/principal');
-    /*
+    //this.ruteador.navigateByUrl('/principal');
+    
 
     this.APIphp.checkUser(user,password).subscribe(datos => {
       if((datos['resultado'] == 'SiAccede')) {        
@@ -28,7 +28,7 @@ export class LoginComponent {
       }else{
         console.log("--no se pudo acceder");
       }
-    });    */
+    });   
 
   }
 

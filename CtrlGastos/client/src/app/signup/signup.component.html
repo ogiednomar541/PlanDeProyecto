@@ -30,30 +30,30 @@
             Regístrese ahora
           </div>
   
-          <form ngNativeValidate [formGroup]="FormularioDeRegistro" (ngSumbit)="Registrar()" class="font-mont">
+          <form ngNativeValidate [formGroup]="formularioDeUsuario" (ngSumbit)="enviarDatos()" class="font-mont">
             <label for="credentials_name">Nombre</label>
             <div class="input mb-4">
-              <input autocapitalize="none" type="text" formControlName="Nombre" required>
+              <input autocapitalize="none" type="text" formControlName="nombre" required>
             </div>
   
             <label for="credentials_identity">Correo electrónico</label>
             <div class="input mb-4">
-              <input autocapitalize="none" type="email" formControlName="Email" required>
+              <input autocapitalize="none" type="email" formControlName="email" required>
             </div>
             
             <label for="credentials_date">Fecha de nacimiento</label>
             <div class="input mb-4">
-              <input style="margin-left: 35%;" autocapitalize="none" type="date" formControlName="FechaNac" required>
+              <input style="margin-left: 35%;" autocapitalize="none" type="date" formControlName="fechanac" required>
             </div>
 
             <label for="credentials_username">Usuario</label>
             <div class="input mb-4">
-              <input autocapitalize="none" type="text" formControlName="Usuario" required>
+              <input autocapitalize="none" type="text" formControlName="usuario" required>
             </div>
   
             <label for="credentials_password">Contraseña</label>
             <div class="input mb-4">
-              <input type="text" formControlName="Contra" required>
+              <input type="text" formControlName="contra" required>
               <div class="invalid-feedback">
                 Please provide a valid zip.
               </div>
@@ -61,11 +61,12 @@
             
             <label for="credentials_password_confirmation">Confirmar Contraseña</label>
             <div class="input mb-4">
-              <input type="password" formControlName="ConfContra" required>
+              <input type="password" formControlName="confcontra" required>
             </div>
 
             <div class="btn-group" role="group" aria-label="">
               <button type="submit" class="btn btn-success">Registrarme</button>
+              <button type="button" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" (click)="enviarDatos()">INISIAR SESION</button>
             </div>
 
           </form>    

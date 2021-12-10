@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
+
 @Component({
   selector: 'app-tucuenta',
   templateUrl: './tucuenta.component.html',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TucuentaComponent implements OnInit {
 
-  constructor() { }
+  Cuenta:any;
+  filterPost = ''
+
+  constructor( private cuentaService: CtrlGastosServiceService) { }
 
   ngOnInit(): void {
+    this.cuentaService.obtenerCuenta().subscribe(respuesta=>{
+      console.log(respuesta);
+      this.Cuenta=respuesta;
+    });
   }
 
 }
+
