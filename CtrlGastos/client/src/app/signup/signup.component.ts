@@ -30,14 +30,28 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
   enviarDatos(): any {
-    console.log("Me presionaste ");
-    console.log(this.formularioDeUsuario.value);
-    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe(respuesta => {
-      console.log(respuesta);
-      this.ruteador.navigateByUrl('/login');
-    });
+    // console.log("Me presionaste ");
+    console.log(this.formularioDeUsuario.value);        
+    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe( datos => {      
+      
+      console.log(datos);
 
+      //this.ruteador.navigateByUrl('/login');
+      /*
+      if((respuesta['resultado'] == 'FAIL')) {        
+        console.log("error el usuario ya existe");
+        alert(respuesta['mensaje']);
+        this.ruteador.navigateByUrl('/signup');
+      }else{
+        alert(respuesta['mensaje']);
+        console.log("usuario registrado con exito");
+        this.ruteador.navigateByUrl('/welcome');        
+      }
+      */      
+    });
+    
 
   }
 
