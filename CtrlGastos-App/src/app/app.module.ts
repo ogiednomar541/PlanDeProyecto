@@ -13,6 +13,7 @@ import { TucuentaModule } from './tucuenta/tucuenta.module';
 import { GastosModule} from './gastos/gastos.module';
 import { LoginModule } from './login/login.module';
 import { RegistrarModule } from './registrar/registrar.module';
+import { ClarityModule } from '@clr/angular';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +28,8 @@ import { RegistrarModule } from './registrar/registrar.module';
     TucuentaModule,
     GastosModule,
     LoginModule,
-    RegistrarModule
+    RegistrarModule,
+    ClarityModule
   ],
   providers: [],
   bootstrap: [AppComponent]

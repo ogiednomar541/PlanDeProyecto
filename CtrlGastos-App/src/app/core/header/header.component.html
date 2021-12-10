@@ -11,26 +11,19 @@
             <br>
             <ul class="nav justify-content-end" style="margin-right: 2%;">
                 <li class="nav-item">
-                    <a routerLink="/principal" routerLinkActive="active" class="nav-link" style="color:white; background-color: gray;">Inicio</a>
+                    <a routerLink="/principal" routerLinkActive="active" class="nav-link" style="color:white;">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/tucuenta" routerLinkActive="active" class="nav-link" style="color:white; background-color: gray;">Tu Cuenta</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color:white; background-color: gray;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" routerLink="/gastos/addgastos" routerLinkActive="active">Añadir un Gasto</a>
-                        <a class="dropdown-item" routerLink="/grupos" routerLinkActive="active">Crear un grupo</a>
-                        <!--
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Todos los gastos</a>
-                        -->
-
-                    </div>
+                    <a routerLink="/tucuenta" routerLinkActive="active" class="nav-link" style="color:white;">Tu Cuenta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white; background-color: gray;">Salir</a>
+                    <a routerLink="/gastos/addgastos" routerLinkActive="active" class="nav-link" style="color:white;">Añadir un gasto</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/grupos" routerLinkActive="active" class="nav-link" style="color:white;">Grupos</a>
+
+                <li class="nav-item">
+                    <a routerLink="/welcome" routerLinkActive="active" class="nav-link" style="color:white;">Salir</a>
                 </li>
             </ul>
 

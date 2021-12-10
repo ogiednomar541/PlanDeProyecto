@@ -1,4 +1,3 @@
-@import "~bootstrap/scss/bootstrap";
 .derecha {
     float: left;
 }
@@ -7,12 +6,14 @@
     float: left;
     width: 10%;
     height: 5%;
-    margin-left: 10%;
-    margin-right: 3px;
-    margin-top: -2%;
+    margin-left: 0%;
+    
 }
 
 .nombreuser {
+    float: left;
     color: white;
     margin: 5px;
+    margin-left: 2%;
+    margin-top: 2%;
 }

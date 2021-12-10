@@ -6,6 +6,8 @@ import { AddgastosComponent } from './gastos/addgastos/addgastos.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { SignupComponent } from './signup/signup.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path: 'tucuenta', component: TucuentaComponent},
   {path: 'gastos/addgastos', component: AddgastosComponent},
   {path: 'grupos', component: GruposComponent},
-  { path: '', pathMatch: 'full', redirectTo:'login'}
+  {path: 'signup', component: SignupComponent},
+  {path: 'welcome', component: WelcomeComponent},
+  { path: '', pathMatch: 'full', redirectTo:'welcome'}
 
 ];
 
