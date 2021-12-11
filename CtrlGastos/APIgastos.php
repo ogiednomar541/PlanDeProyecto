@@ -33,10 +33,10 @@ if(isset($_GET["insertarUsuario"])){
     $fecRes = date('Y-m-d');
             
         if($nom == "" || $email == "" || $user == "" || $pas == "" ||  $cpas == "" || $fecnac==""){
-            $resp = 'NoB';
+            $resp = 'No';
             $mesaje = 'Error no deje campos en blanco';   
         }else if($pas !== $cpas){
-            $resp = 'NoP';
+            $resp = 'No';
             $mesaje = 'Error los passwords no coinciden verifique';   
         }else{       
                 $cuery = "SELECT * FROM tbusers WHERE user = '".$user."'";                        
@@ -50,19 +50,23 @@ if(isset($_GET["insertarUsuario"])){
 
                     $cuery = "SELECT * FROM tbusers WHERE mail = '".$email."'";                        
                     $result = mysqli_query($con,$cuery);
-                    $numrow = mysqli_num_rows($result);                
+                    $numrowv = mysqli_num_rows($result);                
 
-                    if($numrow > 0) {
+                    if($numrowv > 0) {
+
                         $resp = 'No';
                         $mesaje = 'Error usuario ya esta registrado con ese correo';            
-                    }else{
 
-                        $sqlEmpleaados = mysqli_query($con,"INSERT INTO tbuser(nombre,mail,fechanac,user,pass,dateregister, estatus) VALUES('$nom','$email','$fecnac', $user, $pass,$fecRes, $estatus) ");
+                    }else{                                                
+                        $cuery = "INSERT INTO tbusers(nombre,mail,fechanac,user,pass,dateregister, estatus) VALUES('$nom','$email','$fecnac', '$user', '$pas','$fecRes', '$estado')";              
+                        $result = mysqli_query($con,$cuery);
                         $resp = 'Si';
-                        $mesaje = 'Nuevo usuario';            
+                        $mesaje = 'Nuevo usuario Registrado';            
                     }
                 }
         } 
+         //para cerrar la conexion
+         mysqli_close($con);   
         $response = ['resultado' => $resp, 'mesaje' => $mesaje  ] ;
         echo json_encode($response);        
         exit();

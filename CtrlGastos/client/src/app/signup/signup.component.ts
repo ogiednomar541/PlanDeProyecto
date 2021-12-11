@@ -34,22 +34,16 @@ export class SignupComponent implements OnInit {
   enviarDatos(): any {
     // console.log("Me presionaste ");
     console.log(this.formularioDeUsuario.value);        
-    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe( datos => {      
-      
-      console.log(datos);
-
+    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe( datos => {            
+      //console.log(datos);
       //this.ruteador.navigateByUrl('/login');
-      /*
-      if((respuesta['resultado'] == 'FAIL')) {        
-        console.log("error el usuario ya existe");
-        alert(respuesta['mensaje']);
+      if((datos['resultado'] == 'No')) {                
+        alert(datos['mesaje']);
         this.ruteador.navigateByUrl('/signup');
       }else{
-        alert(respuesta['mensaje']);
-        console.log("usuario registrado con exito");
-        this.ruteador.navigateByUrl('/welcome');        
-      }
-      */      
+        alert(datos['mesaje']);        
+        this.ruteador.navigateByUrl('/login');        
+      }      
     });
     
 
