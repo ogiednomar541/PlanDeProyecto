@@ -116,5 +116,45 @@ if(isset($_GET["iniciosesion"])){
 	}
 }
 
-               
+//Obtencion de datos del usuario
+if(isset($_GET["obtenerusuario"])){
+    //los datos a recibir
+        $user = $_GET['user'];        
+    
+        if($user == "" ){
+        //	echo '<script> alert("Error en la API no se enviaron datos "); </script>';	
+            $resp = 'Error';
+            $mesaje = 'Error No Introdujo un usuario ';
+            //echo json_encode($response);
+            //exit();
+        }else{		        
+            //  echo '<script> alert("logrado mandastes datos de typescript a php para su consulta a la BD !! "); </script>';	
+            $cuery = "SELECT * FROM tbusers WHERE user = '".$user."'";                        
+            $result = mysqli_query($con,$cuery);
+            while ($row = mysqli_fetch_array($result)){                                                                
+                $nombre = "".$row['nombre'];                        
+                $mail = "".$row['mail'];                        
+                $pasw = "".$row['pass'];  
+                $fechnac = "".$row['fechanac'];  
+            }  
+            $numrow = mysqli_num_rows($result);                
+            if($numrow > 0) {
+                $resp = 'SiAccede';
+                $mesaje = 'Usuario Encontrado Mostrando datos';           
+                $response = ['resultado' => $resp, 'mesaje' => $mesaje, 'nombre' => $nombre, 'email' => $mail, 'pasword' => $pasw, 'fechanac' => $fechnac]; 
+            }else{            
+                $resp = 'NoAccede';
+                $mesaje = 'Error usuario no Encontrado ';           
+                $response = ['resultado' => $resp, 'mesaje' => $mesaje] ;
+            }        
+            //para cerrar la conexion
+            mysqli_close($con);                            
+            echo json_encode($response);
+            exit();              
+        }
+    }
+    
+
+
+
 ?>
