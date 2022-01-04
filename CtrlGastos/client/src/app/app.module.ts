@@ -28,7 +28,8 @@ import { LiquidarComponent } from './gastos/liquidar/liquidar.component';
 import { RecientesComponent } from './gastos/recientes/recientes.component';
 import { TodosComponent } from './gastos/todos/todos.component';
 import { AddfriendComponent } from './friends/addfriend/addfriend.component';
-
+import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
+//import { CtrlGastosServiceService } from './ctrl-gastos-service.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AddfriendComponent } from './friends/addfriend/addfriend.component';
     LiquidarComponent,
     RecientesComponent,
     TodosComponent,
-    AddfriendComponent
+    AddfriendComponent,
+    GastoinComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { AddfriendComponent } from './friends/addfriend/addfriend.component';
 //    TucuentaModule,    
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

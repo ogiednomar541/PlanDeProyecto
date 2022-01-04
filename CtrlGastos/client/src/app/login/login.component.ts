@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {  
-
+  
   constructor(private APIphp: CtrlGastosServiceService, private ruteador:Router) { }
 
   ngOnInit(): void {
@@ -29,9 +29,12 @@ export class LoginComponent {
         this.ruteador.navigateByUrl('/login');
       }else{
         if((datos['resultado'] == 'SiAccede')) {        
-          this.ruteador.navigateByUrl('/principal');  
-          //aqui una varibale igualada al parametro 'user' que llega a la funcion
-          //la variable que sea global oque se pueda leer desde otro componente  
+          
+         // this.APIphp.setMyuser(user); //si si accede se modifica la variable global usuario          
+          //console.log(user);
+
+          this.ruteador.navigateByUrl('/principal');  //se accede a principal
+          
         }else if((datos['resultado'] == 'Erorr')||(datos['resultado'] == 'NoAccede')){
           console.log("--no se pudo acceder");
           alert((datos['mesaje']));

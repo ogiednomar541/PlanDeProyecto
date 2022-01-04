@@ -72,7 +72,6 @@ if(isset($_GET["insertarUsuario"])){
         exit();
 } 
 
-
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 if(isset($_GET["iniciosesion"])){
 //los datos a recibir
@@ -101,8 +100,7 @@ if(isset($_GET["iniciosesion"])){
             }else{
                 $resp = 'NoAccede';
                 $mesaje = 'Error clave incorrecta';            
-            }
-	        
+            }	        
 	    }else{            
 		    $resp = 'NoAccede';
             $mesaje = 'Error usuario no registrado ';            
@@ -154,7 +152,42 @@ if(isset($_GET["obtenerusuario"])){
         }
     }
     
+//cambiar clave
+if(isset($_GET["Cambiarclave"])){
+        //los datos a recibir
+        $user = $_GET['user'];
+        $pas = $_GET['pas'];          
+    
+        if($user == "" || $pas == "" ){
+        //	echo '<script> alert("Error en la API no se enviaron datos "); </script>';	
+            $resp = 'Error';
+            $mesaje = 'Error usuario o pasword vacios no se realizo la modificacion de su clave';
+            //echo json_encode($response);
+            //exit();
+        }else{         
 
+            //si ubico al usuario
+            $cuery = "SELECT * FROM tbusers WHERE user = '".$user."'";                        
+            $result = mysqli_query($con,$cuery);
+            $numrow = mysqli_num_rows($result);                
+            if($numrow > 0) {
+                
+                $cuery = "UPDATE tbusers SET pass = '$pas' WHERE user = '$user'";
+                $result = mysqli_query($con,$cuery);                                   
+                
+                $resp = 'SiAccede';
+                $mesaje = 'clave cambiada con exito se aplicaran los cambios cuando cierre sesion y vuelva a ingresar';                           
 
-
+            }else{            
+                $resp = 'Error';
+                $mesaje = 'No se pudo cambiar la clave no se identifico el usuario';                               
+            }                                                         
+        }
+        //para cerrar la conexion
+        mysqli_close($con);   
+        
+        $response = ['resultado' => $resp, 'mesaje' => $mesaje  ] ;
+        echo json_encode($response);
+        exit();  
+    }
 ?>

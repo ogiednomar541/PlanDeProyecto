@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
 
@@ -7,16 +7,21 @@ import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
   templateUrl: './tucuenta.component.html',
   styleUrls: ['./tucuenta.component.scss']
 })
+
 export class TucuentaComponent implements OnInit {
 
-  usuario = "saulo";
-
+  //@Input() NombreUser: string  = 'sin nombre';
+  usuario='saulo';
+//varibles para mostrar los datos
+nombre: string | undefined;
+email: string | undefined;
+password: string | undefined;
+fechanac: string | undefined;
   constructor( private APIphp: CtrlGastosServiceService, private ruteador:Router) { }
-
-  ngOnInit(): void {
-    this.obtenerinfo(this.usuario);    
-  }
-
+  ngOnInit(): void {        
+    console.log(this.APIphp.getMyuser());        
+    this.obtenerinfo(this.usuario);        
+  }  
   //metodo de obtener informacion del usuario
   obtenerinfo(user: string,){           
     this.APIphp.obtenerCuenta(user).subscribe(datos => {      
@@ -28,10 +33,11 @@ export class TucuentaComponent implements OnInit {
           alert((datos['mesaje']));
           console.log(datos);
           //aqui van los datos que se cargaran a los imputs
-          //datos['nombre'] 
-          //datos['email']
-          //datos['pasword']
-          //datos['fechanac']          
+           this.nombre = datos['nombre'];
+           this.email = datos['email'];
+           this.password = datos['pasword'];
+           this.fechanac = datos['fechanac'];          
+
         }else if((datos['resultado'] == 'Erorr')||(datos['resultado'] == 'NoAccede')){
           console.log("Error...");
           alert((datos['mesaje']));
@@ -40,6 +46,23 @@ export class TucuentaComponent implements OnInit {
       }                  
     });   
 
+  }
+
+  cambiarclave(user:string, pas: string){
+    console.log(user);
+    console.log(pas);
+    this.APIphp.cambiarClave(user, pas).subscribe(datos => {    
+      if((datos['resultado'] == 'SiAccede')) {                  
+        alert((datos['mesaje']));
+        console.log(datos);
+        this.ruteador.navigateByUrl('/tucuenta');        
+        
+      }else if((datos['resultado'] == 'Error')){
+        console.log("Error...");
+        alert((datos['mesaje']));
+        this.ruteador.navigateByUrl('/tucuenta');
+      }
+    });   
   }
 
 }
