@@ -30,6 +30,7 @@ import { TodosComponent } from './gastos/todos/todos.component';
 import { AddfriendComponent } from './friends/addfriend/addfriend.component';
 import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 //import { CtrlGastosServiceService } from './ctrl-gastos-service.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -59,10 +60,9 @@ import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 //    TucuentaModule,    
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    
+    ReactiveFormsModule,    
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
 
 @Component({
@@ -11,17 +12,22 @@ import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
 export class TucuentaComponent implements OnInit {
 
   //@Input() NombreUser: string  = 'sin nombre';
-  usuario='saulo';
+  NombreUser='sin Nombre';
+
 //varibles para mostrar los datos
 nombre: string | undefined;
 email: string | undefined;
 password: string | undefined;
 fechanac: string | undefined;
-  constructor( private APIphp: CtrlGastosServiceService, private ruteador:Router) { }
+
+  constructor( private APIphp: CtrlGastosServiceService, private ruteador:Router, private cookie: CookieService) { }
+
   ngOnInit(): void {        
-    console.log(this.APIphp.getMyuser());        
-    this.obtenerinfo(this.usuario);        
+    this.NombreUser = this.cookie.get("NombreUser");    
+    //console.log(this.NombreUser);
+    this.obtenerinfo(this.NombreUser);        
   }  
+
   //metodo de obtener informacion del usuario
   obtenerinfo(user: string,){           
     this.APIphp.obtenerCuenta(user).subscribe(datos => {      

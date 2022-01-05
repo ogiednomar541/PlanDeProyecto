@@ -10,7 +10,7 @@ export class CtrlGastosServiceService {
    url = 'http://localhost/APIphp/';
   
   //variable que guarda un usuario
-  usuario: string = 'sin nombre';
+  usuarioLog: string = 'sin nombre';
 
    constructor(private http: HttpClient) {  
     // this.usuario = "null";
@@ -22,12 +22,12 @@ export class CtrlGastosServiceService {
    
    //metodo del login
   checkUser(user: string,password: string):Observable<any>{    
-    this.usuario = user;           
+    this.usuarioLog = user;           
     return this.http.get(`${this.url}APIgastos.php?iniciosesion=1&user=${user}&pas=${password}`);    
   } 
 
   getMyuser(): string{
-      return this.usuario;
+      return this.usuarioLog;
    }
 
    //metodo para registrar usuario
@@ -44,6 +44,36 @@ export class CtrlGastosServiceService {
   //metodo para cambiar la contraseña del usuario
   cambiarClave(user: string,pas: string):Observable<any>{
     return this.http.get(`${this.url}APIgastos.php?Cambiarclave=1&user=${user}&pas=${pas}`);
+  }
+
+  
+
+  //todo los metodos de gastos personales-------------------------------
+  //numero de registros
+  NumGastos(user: string):Observable<any>{
+      return this.http.get(`${this.url}APIgastos.php?NumGastos=1&user=${user}`);
+  }
+  
+  //ejemplo de la tabla
+  mostrarTodos(user: string){
+    return this.http.get(`${this.url}APIgastos.php?MostrarGastosIn=1&user=${user}`);
+  }
+  
+  EliminarGasto(idgasto: string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?EliminarGasto=1&idgasto=${idgasto}&user=${user}`);
+  }
+
+  SeleccionarGasto(idgasto: string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?SeleccionarGasto=1&idgasto=${idgasto}&user=${user}`);
+  }
+
+  AgregarGasto(nom: string, desc:string, adeudo:string, tipo:string, ven:string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?AgregarGasto=1&nom=${nom}&desc=${desc}&deu=${adeudo}&tipo=${tipo}&ven=${ven}&user=${user}`);
+  }
+
+  //solo me falta el actualizar xD
+  ActualizarGasto(idgas:string,nom: string, desc:string, adeudo:string, tipo:string, ven:string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?ActualizarGasto=1&id=${idgas}&nom=${nom}&desc=${desc}&deu=${adeudo}&tipo=${tipo}&ven=${ven}&user=${user}`);
   }
 
 }
