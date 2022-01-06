@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
+import { CookieService } from 'ngx-cookie-service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-principal',
@@ -6,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal.component.scss']
 })
 export class PrincipalComponent implements OnInit {
+  
+  NombreUser = 'sin nombre';
+  constructor(private APIphp: CtrlGastosServiceService, private cookie: CookieService, private ruteador:Router) { }
 
-  constructor() { }
+  ngOnInit(){
+    this.NombreUser = this.cookie.get("NombreUser");  
+    console.log(this.NombreUser);
 
-  ngOnInit(): void {
+    //se ejecuta la creacion de la grafica
+    //this.ngAfterViewInit();
   }
-
+ 
 }

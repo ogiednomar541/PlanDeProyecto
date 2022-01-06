@@ -61,6 +61,11 @@ export class CtrlGastosServiceService {
       return this.http.get(`${this.url}APIgastos.php?NumGastos=1&user=${user}`);
   }
   
+  //Numero de datos de clasificaciones del historial del usuario
+  NumDatoclasi(user: string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?NumDatoClasi=1&user=${user}`);
+}
+
   //ejemplo de la tabla
   MostrarGastp(user: string){
     return this.http.get(`${this.url}APIgastos.php?MostrarGastosIn=1&user=${user}`);

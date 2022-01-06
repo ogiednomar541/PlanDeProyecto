@@ -398,4 +398,42 @@ if(isset($_GET["MostrarHistGastosIn"])){
     exit();
 }
 
+//numero de tuplas por clasificacion por usuario logeado
+if(isset($_GET["NumDatoClasi"])){
+    $user = $_GET["user"];    
+    
+    //empezamos por divercion
+    $cuery = "SELECT * FROM gastosper WHERE tipo = 'Diversion' AND usuario = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numdiv = mysqli_num_rows($result);                    
+    $resp = 'OK';            
+
+    //comida
+    $cuery = "SELECT * FROM gastosper WHERE tipo = 'Comida' AND usuario = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numcom = mysqli_num_rows($result);                        
+
+    //salud
+    $cuery = "SELECT * FROM gastosper WHERE tipo = 'Salud' AND usuario = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numsal = mysqli_num_rows($result);                        
+    
+    //hogar
+    $cuery = "SELECT * FROM gastosper WHERE tipo = 'Hogar' AND usuario = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numho = mysqli_num_rows($result);                        
+    
+    //otro
+    $cuery = "SELECT * FROM gastosper WHERE tipo = 'Otro' AND usuario = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numot = mysqli_num_rows($result);                        
+            
+    //para cerrar la conexion
+    mysqli_close($con);   
+
+    $response = ['resultado' => $resp, 'diver' => $numdiv, 'comida' => $numcom, 'salud' => $numsal, 'hogar' => $numho, 'otro' => $numot ] ;
+    echo json_encode($response);
+    exit();  
+}
+
 ?>

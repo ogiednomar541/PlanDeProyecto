@@ -4,15 +4,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
 //el header y el footer
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-//import { PrincipalModule } from './principal/principal.module';
-//import { TucuentaModule } from './tucuenta/tucuenta.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgChartsModule} from 'ng2-charts';
 
 //importar componentes
 import { SignupComponent } from './signup/signup.component';
@@ -32,6 +29,7 @@ import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 //import { CtrlGastosServiceService } from './ctrl-gastos-service.service';
 import {CookieService} from 'ngx-cookie-service';
 import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
+import { LineChartComponent } from './graficauser/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -50,19 +48,21 @@ import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
     TodosComponent,
     AddfriendComponent,
     GastoinComponent,
-    HisgaspComponent
+    HisgaspComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    SharedModule,    
 //    PrincipalModule,
 //    TucuentaModule,    
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,    
+    NgChartsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

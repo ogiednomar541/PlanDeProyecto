@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CtrlGastosServiceService } from '../../ctrl-gastos-service.service';
-import {NgForm} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 
