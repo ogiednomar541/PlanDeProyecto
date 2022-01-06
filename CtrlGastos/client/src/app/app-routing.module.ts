@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { TucuentaComponent } from './tucuenta/tucuenta.component'
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
+import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
 const routes: Routes = [
   {path: 'principal', component: PrincipalComponent},
   {path: 'tucuenta', component: TucuentaComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'gastos/todos', component: TodosComponent},
   {path: 'gastos/liquidar', component: LiquidarComponent},
   {path: 'gastosind', component: GastoinComponent},
+  {path: 'histgasp', component: HisgaspComponent},  
   {path: '', pathMatch: 'full', redirectTo:'welcome'}
 
 ];

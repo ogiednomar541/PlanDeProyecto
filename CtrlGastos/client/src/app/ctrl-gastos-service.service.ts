@@ -48,6 +48,13 @@ export class CtrlGastosServiceService {
 
   
 
+  
+  
+  //metodos para Historial de gastos
+  MostrarHistGasp(user: string){
+    return this.http.get(`${this.url}APIgastos.php?MostrarHistGastosIn=1&user=${user}`);
+  }
+
   //todo los metodos de gastos personales-------------------------------
   //numero de registros
   NumGastos(user: string):Observable<any>{
@@ -55,7 +62,7 @@ export class CtrlGastosServiceService {
   }
   
   //ejemplo de la tabla
-  mostrarTodos(user: string){
+  MostrarGastp(user: string){
     return this.http.get(`${this.url}APIgastos.php?MostrarGastosIn=1&user=${user}`);
   }
   

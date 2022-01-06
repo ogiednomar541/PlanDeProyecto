@@ -1,0 +1,47 @@
+<div align="center" style="width: 80%; margin-left: 20%;">
+    <br>
+    <h4>{{titulo}} <input type="text" style="width: 20%;" type="text" #nombreuser value="{{NombreUser}}" readonly></h4>
+    <br>
+</div>
+<div class="container" style="width: 80%; margin-left: 10%; background-color: darkgray;"><br>
+    <div class="col-sm-7 float-left" style="width: 100%;">
+        <!--class="table table-borderless table-striped table-dark"
+        class="thead-dark" -->
+        <table border="0" span="0" *ngIf="hayRegistros();  else sinarticulos" class="table table-borderless table-striped" style="background:white; border-color: black; border:0px; box-shadow:3px 3px 5px 4px rgba(0,0,0,0.25);">
+            <thead style=" border: 3% solid; background:black; color: white;">
+                <tr>
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>Tipo Gasto</td>
+                    <td>Adeudo</td>
+                    <td>Vencimiento</td>
+                    <td>Estado</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Gastos of gasto" style="border: 2px solid; border-color: black;">
+                    <td>{{Gastos.nombre}}</td>
+                    <td>{{Gastos.descripcion}}</td>
+                    <td>{{Gastos.tipo}}</td>
+                    <td>{{Gastos.cantidad}}</td>
+                    <td>{{Gastos.fechaex}}</td>
+                    <td>{{Gastos.estado}}</td>
+                    <!--<td>{{Gastos.usuario}}</td>-->
+                </tr>
+            </tbody>
+        </table><br>
+        <!--
+        <div align="center" style="color: white; background-color: darkslategray; border-radius: 20%; border: 0%;">
+            <p>CodigoGasto:</p>
+            <input type="number" class="form-control m-1" style="width: 40%;" min="1" #idgasto placeholder="codigo Gasto">
+            <button class="btn btn-danger text-white" (click)="Eliminar(idgasto.value,nombreuser.value)">Pagar</button>&nbsp;<button class="btn btn-info text-white" (click)="Seleccionar(idgasto.value, nombreuser.value)">Seleccionar</button>
+            <br><br>
+        </div>
+        -->
+    </div>
+    <ng-template #sinarticulos>
+        <p>No Hay Historial de Gastos.</p>
+    </ng-template>
+    <br>
+</div>
+<br><br>

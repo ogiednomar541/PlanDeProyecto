@@ -191,34 +191,33 @@ if(isset($_GET["Cambiarclave"])){
         exit();  
     }
 
-//todo solbre los gastos personales
+//todo solbre los gastos personales -----------------------------------------------------
     //numero de gastos para ver si se muestra la tabla no no xD
     if(isset($_GET["NumGastos"])){
         $user = $_GET["user"];    
         
-        $cuery = "SELECT * FROM gastosper WHERE estado =  'A' AND usuario = '".$user."'";                        
+        $cuery = "SELECT * FROM gastosper WHERE estado =  'PENDIENTE' AND usuario = '".$user."'";                        
         $result = mysqli_query($con,$cuery);
         $numrow = mysqli_num_rows($result);                
         if($numrow > 0) {
-            $resp = 'OK';
+            $resp = 'OK';            
         }else{
-            $resp = 'ERROR';
+            $resp = 'OK';
         }
 
-            //para cerrar la conexion
-            mysqli_close($con);   
+        //para cerrar la conexion
+        mysqli_close($con);   
 
-        $response = ['resultado' => $resp ] ;
+        $response = ['resultado' => $resp, 'resp' => $numrow ] ;
         echo json_encode($response);
         exit();  
-
     }
 
 //Mostrar todos los gastos xD
 if(isset($_GET["MostrarGastosIn"])){
     $user = $_GET["user"];
 
-    $cuery = "SELECT * FROM gastosper WHERE estado =  'A' AND usuario = '".$user."'";                        
+    $cuery = "SELECT * FROM gastosper WHERE estado =  'PENDIENTE' AND usuario = '".$user."'";                        
     $result = mysqli_query($con,$cuery);          
     $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
     
@@ -235,23 +234,22 @@ if(isset($_GET["EliminarGasto"])){
     $user = $_GET["user"];
 
     //se revisa que si existe dicho gasto con dicho nombre de usuario
-    $cuery = "SELECT * FROM gastosper WHERE idgasto = $idgasto AND usuario = '".$user."'";                        
+    $cuery = "SELECT * FROM gastosper WHERE idgasto = $idgasto AND usuario = '$user' AND estado = 'PENDIENTE'";                        
     $result = mysqli_query($con,$cuery);
     $numrow = mysqli_num_rows($result);                
-    if($numrow > 0) {
-        
-        $cuery = "UPDATE gastosper SET estado = 'B' WHERE idgasto = $idgasto";      
-        $result = mysqli_query($con,$cuery);      
-        $resp = 'OK';    
+    if($numrow > 0) {                
+
+        //si ya se elimino no volverlo a eliminar                
+            $cuery = "UPDATE gastosper SET estado = 'PAGADO' WHERE idgasto = $idgasto AND usuario = '$user' AND estado = 'PENDIENTE'";      
+            $result = mysqli_query($con,$cuery);      
+            $resp = 'OK';                    
     
     }else{
         $resp = 'Error';    
     }
             
     //para cerrar la conexion
-    mysqli_close($con);   
-    
-    
+    mysqli_close($con);           
     $response = ['resultado' => $resp ] ;
     echo json_encode($response);  
     exit();
@@ -262,7 +260,7 @@ if(isset($_GET["SeleccionarGasto"])){
     $idgasto = $_GET["idgasto"];
     $user = $_GET["user"];
         
-            $cuery = "SELECT * FROM gastosper WHERE idgasto = $idgasto AND usuario = '".$user."'";                        
+            $cuery = "SELECT * FROM gastosper WHERE idgasto = $idgasto AND usuario = '$user' AND estado = 'PENDIENTE'";                        
             $result = mysqli_query($con,$cuery);
             while ($row = mysqli_fetch_array($result)){                                                                
                                 
@@ -304,8 +302,8 @@ if(isset($_GET["AgregarGasto"])){
 
     if( $fechaEnt < $fechaactual ){
         $resp = 'Error';
-    }else{        
-        $cuery = "INSERT INTO gastosper(nombre,descripcion,tipo,cantidad,fechaex,usuario,estado) VALUES('$nom','$desc','$tipo', $deu, '$ven','$user', 'A')";              
+    }else{                        
+        $cuery = "INSERT INTO gastosper(nombre,descripcion,tipo,cantidad,fechaex,usuario,estado) VALUES('$nom','$desc','$tipo', $deu, '$ven','$user', 'PENDIENTE')";              
         $result = mysqli_query($con,$cuery);    
         $resp = 'OK';            
     }
@@ -350,7 +348,6 @@ if(isset($_GET["ActualizarGasto"])){
         //para la cantidad
         $cuery = "UPDATE gastosper SET cantidad = $deu WHERE idgasto = $id";              
         $result = mysqli_query($con,$cuery);      
-
         
         $resp = 'Error';
     }else{    
@@ -384,6 +381,21 @@ if(isset($_GET["ActualizarGasto"])){
     echo json_encode($response);
     exit();              
 
+}
+
+//mostrar Historial de gastos personales
+if(isset($_GET["MostrarHistGastosIn"])){
+    $user = $_GET["user"];
+
+    //sin ASC es de mayor a menor
+    $cuery = "SELECT * FROM gastosper WHERE usuario = '$user' ORDER BY fechaex DESC";                        
+    $result = mysqli_query($con,$cuery);          
+    $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    
+    //para cerrar la conexion    
+    mysqli_close($con);   
+    echo json_encode($row);
+    exit();
 }
 
 ?>

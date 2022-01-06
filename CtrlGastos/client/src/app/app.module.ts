@@ -31,6 +31,7 @@ import { AddfriendComponent } from './friends/addfriend/addfriend.component';
 import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 //import { CtrlGastosServiceService } from './ctrl-gastos-service.service';
 import {CookieService} from 'ngx-cookie-service';
+import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {CookieService} from 'ngx-cookie-service';
     RecientesComponent,
     TodosComponent,
     AddfriendComponent,
-    GastoinComponent
+    GastoinComponent,
+    HisgaspComponent
   ],
   imports: [
     BrowserModule,
