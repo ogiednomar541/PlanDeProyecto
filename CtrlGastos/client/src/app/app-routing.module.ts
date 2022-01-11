@@ -15,6 +15,8 @@ import { TucuentaComponent } from './tucuenta/tucuenta.component'
 import { WelcomeComponent } from './welcome/welcome.component';
 import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
+import { GestuserComponent } from './gestuser/gestuser/gestuser.component';
+
 const routes: Routes = [
   {path: 'principal', component: PrincipalComponent},
   {path: 'tucuenta', component: TucuentaComponent},
@@ -30,7 +32,8 @@ const routes: Routes = [
   {path: 'gastos/todos', component: TodosComponent},
   {path: 'gastos/liquidar', component: LiquidarComponent},
   {path: 'gastosind', component: GastoinComponent},
-  {path: 'histgasp', component: HisgaspComponent},  
+  {path: 'histgasp', component: HisgaspComponent}, 
+  {path: 'gestuser', component: GestuserComponent },   
   {path: '', pathMatch: 'full', redirectTo:'welcome'}
 
 ];

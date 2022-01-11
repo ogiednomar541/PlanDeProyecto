@@ -30,6 +30,8 @@ import { GastoinComponent } from './gastosind/gastoin/gastoin.component';
 import {CookieService} from 'ngx-cookie-service';
 import { HisgaspComponent } from './histgasp/hisgasp/hisgasp.component';
 import { LineChartComponent } from './graficauser/line-chart/line-chart.component';
+import { BarAdminComponent } from './graficadmin/bar-admin/bar-admin.component';
+import { GestuserComponent } from './gestuser/gestuser/gestuser.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { LineChartComponent } from './graficauser/line-chart/line-chart.componen
     AddfriendComponent,
     GastoinComponent,
     HisgaspComponent,
-    LineChartComponent
+    LineChartComponent,
+    BarAdminComponent,
+    GestuserComponent
   ],
   imports: [
     BrowserModule,

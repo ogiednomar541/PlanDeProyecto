@@ -1,29 +1,16 @@
 <div class="container">
 
-    <div style="width:60%; float:left; background-color:rgb(255, 255, 255); margin-left: 1%;">
+    <div *ngIf="Esadmin();  else noesadmin" style="width:60%; float:left; background-color:rgb(255, 255, 255); margin-left: 1%;">
         <br>
-
-        <app-line-chart></app-line-chart>
-        <!--        
-        <h5 style="text-align: center;">Visualizador de Grafica de Gastos:</h5>
-        <form class="frm">
-            <h5 id="titulo" class="frm_titulo">Margenes de Fechas</h5>
-            <div style="margin-left:10%;">
-                <label>Fecha de inicio: </label><input type="date" required style="margin-left: 6%; margin-bottom: 1%;"><br>
-                <label>Fecha Final:     </label><input type="date" required style="margin-left: 13%; margin-bottom: 1%;"> <br>
-            </div>
-            <div style="text-align: center;"> <br>
-                <button class="frm_submit" type="button">Generar</button>
-            </div>
-        </form>
-        -->
+        <app-bar-admin></app-bar-admin>
         <br>
     </div>
 
-
-    <!--
-    <div style="width:29%; float: right; background-color: chartreuse; margin-left: 1%;" >
-        <p style="text-align: center;">Visualizador de </p>
-    </div>
-    -->
+    <ng-template #noesadmin>
+        <div style="width:60%; float:left; background-color:rgb(255, 255, 255); margin-left: 1%;">
+            <br>
+            <app-line-chart></app-line-chart>
+            <br>
+        </div>
+    </ng-template>
 </div>

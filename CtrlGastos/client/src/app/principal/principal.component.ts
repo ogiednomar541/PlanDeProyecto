@@ -21,5 +21,12 @@ export class PrincipalComponent implements OnInit {
     //se ejecuta la creacion de la grafica
     //this.ngAfterViewInit();
   }
- 
+
+  Esadmin(){
+    if (this.NombreUser == "AdminAdmin"){
+        return true;   
+    }else{
+      return false;   
+    }
+  }   
 }

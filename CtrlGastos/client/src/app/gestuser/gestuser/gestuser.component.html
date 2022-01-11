@@ -1,0 +1,63 @@
+<div align="center">
+    <br>
+    <h2>{{titulo}} <input type="text" style="width: 20%;" type="text" #nombreuser value="{{NombreUser}}" readonly></h2>
+    <br>
+</div>
+
+<div class="container" style="display: flex;">
+    <div class="col-sm-8 float-left">
+        <table border="0" span="0" *ngIf="hayRegistros();  else sinarticulos" class="table table-borderless table-striped table-dark" style=" border:0px; box-shadow:3px 3px 5px 4px rgba(0,0,0,0.25);">
+            <thead class="thead-dark" style="background:black; color:white;">
+                <tr>
+                    <td>Id-Usuario</td>
+                    <td>Nombre</td>
+                    <td>Correo</td>
+                    <td>Fecha de Nacimiento</td>
+                    <td>Usuario</td>
+                    <td>Pasword</td>
+                    <td>Estado</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Usuario of usuario">
+                    <td>{{Usuario.idusers}}</td>
+                    <td>{{Usuario.nombre}}</td>
+                    <td>{{Usuario.mail}}</td>
+                    <td>{{Usuario.fechanac}}</td>
+                    <td>{{Usuario.user}}</td>
+                    <td>{{Usuario.pass}}</td>
+                    <td>{{Usuario.estatus}}</td>
+                    <!--<td>{{Gastos.usuario}}</td>
+                    <td>{{Gastos.estado}}</td>-->
+                </tr>
+            </tbody>
+        </table><br>
+    </div>
+
+    <ng-template #sinarticulos>
+        <p>No Hay usuarios Significa: Pagina vacia.</p>
+    </ng-template>
+
+    <div class="card col-sm-4 p-2 float-right" style="float: right; margin-left: 2%; background-color:darkslategrey; padding-left: 1%;">
+        <br>
+        <h4 style="margin-left: 5%;  color: white;">Id-Usuario:</h4>
+        <div align="center">
+            <input type="number" class="form-control m-1" style="width: 40%;" min="1" #iduser placeholder="Id-Usuario">
+        </div><br>
+        <h4 style="margin-left: 5%;  color: white;">Pasword Nuevo:</h4>
+        <div align="center">
+            <input type="text" class="form-control m-1" style="width: 50%;" type="text" #newpas readonly placeholder="Nuevo Pasword">
+        </div><br>
+        <div align="center">
+            <button class="btn btn-danger text-white" style="width: 50%;" (click)="Desabilitar(iduser.value)">Desabilitar</button>
+        </div><br>
+        <div align="center">
+            <button class="btn btn-info text-white" style="width: 50%;" (click)="Cambiarpas(iduser.value, newpas.value)">Cambiar Pasword</button>
+        </div><br>
+        <div align="center">
+            <button class="btn btn-info text-white" style="width: 50%;" (click)="Habilitar(iduser.value)">Habilitar</button>
+        </div>
+        <br>
+    </div>
+</div>
+<br><br>
