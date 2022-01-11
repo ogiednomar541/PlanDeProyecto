@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 //require("./conexion.php");        
 //$con = mysqli_connect("localhost","root","","bdprueba");   
-$servidor = "localhost"; $usuario = "root"; $contrasenia = "saulo2000"; $nombreBaseDatos = "bdprueba";
+$servidor = "localhost"; $usuario = "root"; $contrasenia = "1234"; $nombreBaseDatos = "bdprueba";
 $con = mysqli_connect($servidor, $usuario, $contrasenia, $nombreBaseDatos, "3306");
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
@@ -113,7 +113,7 @@ if(isset($_GET["iniciosesion"])){
         exit();              
 	}
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Obtencion de datos del usuario
 if(isset($_GET["obtenerusuario"])){
     //los datos a recibir
@@ -151,7 +151,7 @@ if(isset($_GET["obtenerusuario"])){
             exit();              
         }
     }
-    
+ //------------------------------------------------------------------------------------------------------------------------------------------------------------   
 //cambiar clave
 if(isset($_GET["Cambiarclave"])){
         //los datos a recibir
@@ -190,7 +190,7 @@ if(isset($_GET["Cambiarclave"])){
         echo json_encode($response);
         exit();  
     }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //todo solbre los gastos personales -----------------------------------------------------
     //numero de gastos para ver si se muestra la tabla no no xD
     if(isset($_GET["NumGastos"])){
@@ -212,7 +212,7 @@ if(isset($_GET["Cambiarclave"])){
         echo json_encode($response);
         exit();  
     }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Mostrar todos los gastos xD
 if(isset($_GET["MostrarGastosIn"])){
     $user = $_GET["user"];
@@ -227,7 +227,7 @@ if(isset($_GET["MostrarGastosIn"])){
     echo json_encode($row);
     exit();
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Eliminar un gasto
 if(isset($_GET["EliminarGasto"])){
     $idgasto = $_GET["idgasto"];
@@ -254,7 +254,7 @@ if(isset($_GET["EliminarGasto"])){
     echo json_encode($response);  
     exit();
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Seleccionar un gasto
 if(isset($_GET["SeleccionarGasto"])){
     $idgasto = $_GET["idgasto"];
@@ -284,7 +284,7 @@ if(isset($_GET["SeleccionarGasto"])){
             echo json_encode($response);
             exit();              
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //insetar un gasto
 if(isset($_GET["AgregarGasto"])){
     
@@ -315,7 +315,7 @@ if(isset($_GET["AgregarGasto"])){
     exit();              
 
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Actualizar gasto
 if(isset($_GET["ActualizarGasto"])){
     
@@ -382,7 +382,7 @@ if(isset($_GET["ActualizarGasto"])){
     exit();              
 
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //mostrar Historial de gastos personales
 if(isset($_GET["MostrarHistGastosIn"])){
     $user = $_GET["user"];
@@ -435,5 +435,110 @@ if(isset($_GET["NumDatoClasi"])){
     echo json_encode($response);
     exit();  
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+if(isset($_GET["CrearGrupo"])){
+    $body = file_get_contents("php://input");
+    
+    $nom=$_GET["nombre"];
+    $desc=$_GET["desc"];
+    $user=$_GET["user"];
+    //fecha de registro
+    $status = "A";
 
+        if($nom == "" || $desc == "" || $user == "" ||  $status == ""){
+            $resp = 'No';
+            $mesaje = 'Error no deje campos en blanco';     
+        }else{       
+                $cuery = "SELECT * FROM tbgroup WHERE namegp = '".$nom."'";                        
+                $result = mysqli_query($con,$cuery);
+                $numrow = mysqli_num_rows($result);                        
+		if($numrow > 0) {                                              
+                    $resp = 'No';
+                    $mesaje = 'Error El nombre de grupo ya existe';                                 
+                            
+                }else{                        
+
+                    $cuery = "INSERT INTO tbgroup(namegp,descripcion,user,fechacreac,status) VALUES('$nom','$desc', '$user',current_date(), '$status')";              
+                    $result = mysqli_query($con,$cuery);
+                    $resp = 'Si';
+                    $mesaje = 'Se agrego correctamente'; 
+                }
+        } 
+         //para cerrar la conexion
+         mysqli_close($con);   
+        $response = ['resultado' => $resp, 'mesaje' => $mesaje  ] ;
+        echo json_encode($response);        
+        exit();
+} 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+if(isset($_GET["MostrarGrupos"])){
+    $user = $_GET["user"];
+
+    //sin ASC es de mayor a menor
+    $cuery = "SELECT * FROM tbpergpo WHERE user = '$user'";                        
+    $result = mysqli_query($con,$cuery);          
+    $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    
+    //para cerrar la conexion    
+    mysqli_close($con);   
+    echo json_encode($row);
+    exit();
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+if(isset($_GET["AñadirAGpo"])){
+    $body = file_get_contents("php://input");
+    
+    $grupo=$_GET["grupo"];
+    $nomuser=$_GET["nomuser"];
+    $cantidad=$_GET["cantidad"];
+    //fecha de registro
+
+        if($grupo == "" || $nomuser == "" || $cantidad == ""){
+            $resp = 'No';
+            $mesaje = 'Error no deje campos en blanco';     
+        }else{       
+                $cuery = "SELECT * FROM tbusers WHERE user = '".$nomuser."'";                        
+                $result = mysqli_query($con,$cuery);
+                $numrow = mysqli_num_rows($result);                        
+		if($numrow > 0) {       
+		    $cuery = "SELECT * FROM tbpergpo WHERE user = '".$nomuser."' AND namegp = '".$grupo."'";                        
+                    $result = mysqli_query($con,$cuery);
+                    $numrow = mysqli_num_rows($result);   
+		    if($numrow > 0) {                               
+                    	$resp = 'No';
+                    	$mesaje = 'Error El usuario ya existe en este grupo';                         
+                    }else{
+			$cuery = "INSERT INTO tbpergpo(namegp,user,cantidad,fecharegis) VALUES('$grupo','$nomuser', '$cantidad',current_date())";              
+                    	$result = mysqli_query($con,$cuery);
+                    	$resp = 'Si';
+                    	$mesaje = 'Se agrego correctamente';
+		    }        
+                }else{                        
+		    $resp = 'No';
+                    $mesaje = 'Error El usuario no existe';
+                    
+                }
+        } 
+         //para cerrar la conexion
+         mysqli_close($con);   
+        $response = ['resultado' => $resp, 'mesaje' => $mesaje  ] ;
+        echo json_encode($response);        
+        exit();
+} 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Mostrar todos los gastos xD
+if(isset($_GET["MostrarInGpo"])){
+    $grupo = $_GET["grupo"];
+
+    $cuery = "SELECT * FROM tbpergpo WHERE namegp =  '".$grupo."'";                        
+    $result = mysqli_query($con,$cuery);          
+    $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    
+    //para cerrar la conexion    
+    mysqli_close($con);   
+
+    echo json_encode($row);
+    exit();
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 ?>

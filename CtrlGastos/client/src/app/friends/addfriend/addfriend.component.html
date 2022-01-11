@@ -22,19 +22,24 @@
     
             <form class="font-mont" novalidate="novalidate" action="/grupos/grupos" accept-charset="UTF-8"> 
 
-                <label for="credentials_identity">Nombre</label>
+                <label for="credentials_identity">Nombre del grupo</label>
                 <div class="input mb-4">
-                  <input autocapitalize="none" type="text" name="credentials[identity]" id="credentials_identity">
+                  <select class="form-select" #grupos > 
+                      <option  *ngFor="let grupo of Grupos; let iControl=index">{{grupo.namegp}}</option>
+                  </select>
                 </div>
 
-                <label for="credentials_identity">Correo electrónico</label>
+                <label for="credentials_identity">Nombre Usuario</label>
                 <div class="input mb-4">
-                <input autocapitalize="none" type="email" name="credentials[identity]" id="credentials_identity" required>
+                <input autocapitalize="none" #nomuser type="text"required>
                 </div>            
                 
-                
+                <label for="credentials_identity">Cantidad</label>
+                <div class="input mb-4">
+                <input autocapitalize="none" #cantidad type="text"required>
+                </div> 
               <div class="py-4">
-                <input type="submit" name="commit" value="Añadir amigo" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" data-disable-with="Iniciar sesión">
+                <button type="button" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" (click)="addAgpo(grupos.value, nomuser.value, cantidad.value)">Añadir Amigo</button>
               </div>
     </form>    
             

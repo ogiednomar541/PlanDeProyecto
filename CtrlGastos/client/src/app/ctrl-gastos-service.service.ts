@@ -88,4 +88,19 @@ export class CtrlGastosServiceService {
     return this.http.get(`${this.url}APIgastos.php?ActualizarGasto=1&id=${idgas}&nom=${nom}&desc=${desc}&deu=${adeudo}&tipo=${tipo}&ven=${ven}&user=${user}`);
   }
 
+  CrearGrupo(nom: string, desc:string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?CrearGrupo=1&nombre=${nom}&desc=${desc}&user=${user}`);
+  }
+
+  MostrarGrupos(user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?MostrarGrupos=1&user=${user}`);
+  }
+
+  AñadirAGpo(grupo:string, nomuser:string, cantidad:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?AñadirAGpo=1&grupo=${grupo}&nomuser=${nomuser}&cantidad=${cantidad}`);
+  }
+
+  MostrarInGpo(grupo:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?MostrarInGpo=1&grupo=${grupo}`);
+  }
 }

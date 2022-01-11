@@ -24,23 +24,14 @@
 
                 <label for="credentials_identity">Nombre</label>
                 <div class="input mb-4">
-                  <input autocapitalize="none" type="text" name="credentials[identity]" id="credentials_identity">
+                  <input autocapitalize="none" #nombre type="text" >
                 </div>
-                
-                <label for="participantes">Miembros</label>
-                <select multiple name="participantes" id="participantes" class="form-select form-select-sm mb-3" aria-label=".form-select-sm">
-                    <option value="roberto">Roberto</option>
-                    <option value="ana">Ana</option>
-                    <option value="pamela">Pamela</option>
-                    <option value="alan">Alan</option>
-                    <option value="andrea">Andrea</option>
-                    <option value="sofia">Sofía</option>
-                </select>
-                
-                
-                
+                <label for="credentials_identity">Descripcion</label>
+                <div class="input mb-4">
+                  <input autocapitalize="none" #desc type="text">
+                </div>
               <div class="py-4">
-                <input type="submit" name="commit" value="Añadir grupo" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" data-disable-with="Iniciar sesión">
+                <button type="button" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" (click)="aggGrupo(nombre.value, desc.value)">Añadir Grupo</button>
               </div>
     </form>    
             

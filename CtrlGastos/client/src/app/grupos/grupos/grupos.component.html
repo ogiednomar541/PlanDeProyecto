@@ -21,45 +21,62 @@
             </div>
             <div class="list">
                 <div class="izq" style=" padding-right: 14px;
-                border-right: 1px solid #eee; float: left;
-width: 250px;">
+                border-right: 1px solid #eee; float: left;width: 250px;">
                     <ul>
                       Añadir grupo
                         <a href="grupos/addgroup" style="display: inline-block;">
                           <img src="assets/add.png" alt="add" style="display: inline-block;">
                         </a>
-                        <li>
-                            <a href="grupos/groupdetail"> Roomies</a>
-                        </li>
-                        <li>
-                            <a href=""> Grupo 2</a>
-                        </li>
-                        <li>
-                            <a href=""> Grupo 3</a>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div class="der" style="text-align: left; float: right;
                 padding-left: 13px;
                 margin-left: -1px;">
                     <ul>
-                      Añadir amigo
+                      Añadir persona a grupo
                       <a href="friends/addfriend">                        
                         <img src="assets/add.png" alt="add" style="display: inline-block;">
                       </a>
-                        <li>
-                            <p>Alguien</p>
-                        </li>
-                        <li>
-                            <p>Persona 2</p>
-                        </li>
                     </ul>
                 </div>
             </div>
-               
             
           </div>
         </div>
+          <p style="text-align: center;"> Ver integrantes del grupo</p>
+          <br>
+        <div style="text-align: center; width: 20%;  ">
+          <select class="form-select" #grupos > 
+            <option  *ngFor="let grupo of Grupos; let iControl=index">{{grupo.namegp}}</option>
+          </select>
+        </div>
+        <br>
+        <div style="text-align: center; align-items: center;">
+          <button type="button" class="font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full " style="width: 15%;" (click)="persgpo(grupos.value)">Mostrar grupo</button>
+          <br><br>
+          <table align="center" class="table table-borderless table-striped table-dark" style="width: 60%; background:white; border-color: black; border:0px; box-shadow:3px 3px 5px 4px rgba(0,0,0,0.25);">
+            <thead class="thead-dark" style="background:black; color:white;">
+                <tr>
+                    <td>Usuario</td>
+                    <td>Cantidad</td>
+                    <td>Fecha de registro</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grupo of Grupos2; let iControl=index">
+                    <td>{{grupo.user}}</td>
+                    <td>{{grupo.cantidad}}</td>
+                    <td>{{grupo.fecharegis}}</td>
+                    <!--<td>{{Gastos.usuario}}</td>-->
+                </tr>
+            </tbody>
+          </table><br>
+        </div>
+        <br>
+      <ng-template #sinarticulos>
+        <p>No hay personas en el grupo.</p>
+    </ng-template>
       </div>
     </main>
     

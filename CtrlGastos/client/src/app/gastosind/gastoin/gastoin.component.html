@@ -30,10 +30,10 @@
                 </tr>
             </tbody>
         </table><br>
-        <div align="center" style="color: white; background-color: darkslategray; border-radius: 20%; border: 0%;">
+        <div align="center" style="color: rgb(0, 0, 0); background-color:rgb(20, 187, 140); border-radius: 20%; border: 0%;">
             <p>CodigoGasto:</p>
             <input type="number" class="form-control m-1" style="width: 40%;" min="1" #idgasto placeholder="codigo Gasto">
-            <button class="btn btn-danger text-white" (click)="Eliminar(idgasto.value,nombreuser.value)">Pagar</button>&nbsp;<button class="btn btn-info text-white" (click)="Seleccionar(idgasto.value, nombreuser.value)">Seleccionar</button>
+            <button class="btn btn-danger text-black" (click)="Eliminar(idgasto.value,nombreuser.value)">Pagar</button>&nbsp;<button class="btn btn-info text-black" (click)="Seleccionar(idgasto.value, nombreuser.value)">Seleccionar</button>
             <br><br>
         </div>
 
@@ -43,24 +43,24 @@
         <p>No Hay Gastos Significa: Libre de Deudas jeje.</p>
     </ng-template>
 
-    <div class="card col-sm-4 p-2 float-right" style="float: right; margin-left: 2%; background-color:darkslategrey; padding-left: 1%;">
-        <p style="color: white;">
+    <div class="card col-sm-4 p-2 float-right" style="float: right; margin-left: 2%; background-color:rgb(20, 187, 140); padding-left: 1%;">
+        <p style="color: rgb(0, 0, 0);">
             CodigoGasto
             <input type="text" class="form-control m-1" style="width: 20%;" type="text" #idGaston value="{{idGasto}}" readonly placeholder="ID-Gasto">
         </p><br>
-        <p style="color: white;">
+        <p style="color: rgb(0, 0, 0);">
             Nombre
             <input type="text" class="form-control m-1" style="width: 80%;" type="text" #nombreg value="{{Nombregasto}}" placeholder="Nombre de gasto">
         </p><br>
-        <p style="color: white; margin-right: 2%;">
+        <p style="color: rgb(0, 0, 0); margin-right: 2%;">
             Descripcion:<br>
             <input type="text" class="form-control m-1" type="text" #descripciong value="{{descripcion}}" placeholder="Descripcion De Gasto">
         </p><br>
-        <p style="color: white;">
+        <p style="color: rgb(0, 0, 0);">
             Adeudo
             <input type="number" class="form-control m-1" style="width: 40%;" #adeudo min="1" step="any" value="{{cantidad}}" placeholder="Cantidad de adeudo">
         </p><br>
-        <p style="color: white;">
+        <p style="color: rgb(0, 0, 0);">
             Tipo Actual:
             <input type="text" class="form-control m-1" style="width: 40%;" readonly #tipo value="{{verSeleccion}}" placeholder="categoria de Gasto"><br> Nuevo Tipo:
             <select name="select" [(ngModel)]="opcionSeleccionado" (change)="obtenertipo()">
@@ -71,20 +71,20 @@
                 <option value="Otro">Otro</option>
             </select>
         </p><br>
-        <p style="color: white;">
+        <p style="color: rgb(0, 0, 0);">
             Fecha Actual
             <input type="text" class="form-control m-1" min="2015-12-31" max="2099-12-31" style="width: 80%;" #ven value="{{fechaex}}" readonly placeholder="vencimiento"><br>
         </p>
-        <p style="color: white;">
+        <p style="color: rgb(0, 0, 0);">
             Nueva Fecha de Vencimiento
             <input type="date" class="form-control m-1" min="2015-12-31" max="2099-12-31" style="width: 80%;" [(ngModel)]="fechaext" (change)="obtenervenci()" placeholder="vencimiento"><br>
         </p>
         <div class="row">
             <div class="col-sm-2 " style="margin-left: 20%; display: flex;">
-                <button class="btn btn-outline-dark float-left" style="background-color: aqua;" (click)="Agregar(nombreg.value, descripciong.value, adeudo.value, tipo.value, ven.value, nombreuser.value)">Agregar</button>
+                <button class="btn btn-outline-dark float-left" style="background-color: rgba(41, 204, 204, 0.788);" (click)="Agregar(nombreg.value, descripciong.value, adeudo.value, tipo.value, ven.value, nombreuser.value)">Agregar</button>
             </div>
             <div class="col-sm-2 " style="margin-left: 6%;">
-                <button class="btn btn-outline-dark float-right" style="background-color: aqua;" (click)="Modificar(idGaston.value,nombreg.value, descripciong.value, adeudo.value, tipo.value, ven.value, nombreuser.value)">Modificar</button>
+                <button class="btn btn-outline-dark float-right" style="background-color: rgba(41, 204, 204, 0.788);" (click)="Modificar(idGaston.value,nombreg.value, descripciong.value, adeudo.value, tipo.value, ven.value, nombreuser.value)">Modificar</button>
             </div>
         </div>
     </div>
