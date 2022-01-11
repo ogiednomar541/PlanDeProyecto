@@ -29,7 +29,7 @@ fechanac: string | undefined;
   }  
 
   //metodo de obtener informacion del usuario
-  obtenerinfo(user: string,){           
+  obtenerinfo(user: string){           
     this.APIphp.obtenerCuenta(user).subscribe(datos => {      
       if(user == "" ){
         alert("Error no se loggeo primero");
