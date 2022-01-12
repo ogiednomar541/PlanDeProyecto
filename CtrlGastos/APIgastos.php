@@ -713,4 +713,72 @@ if(isset($_GET["ConsulVen"])){
     echo json_encode($response);
     exit();            
 }
+//-----------------------------------------------------------------------------------------------------------
+//Eliminar un gasto de grupo
+if(isset($_GET["EliminarGastoGpo"])){
+    $grupo = $_GET["grupo"];
+    $user = $_GET["user"];
+
+    //se revisa que si existe dicho gasto con dicho nombre de usuario
+    $cuery = "SELECT * FROM tbpergpo WHERE namegp = '".$grupo."' AND user = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    $numrow = mysqli_num_rows($result);                
+    if($numrow > 0) {                               
+            $cuery = "DELETE FROM tbpergpo WHERE  namegp = '".$grupo."' AND user = '".$user."'";      
+            $result = mysqli_query($con,$cuery);      
+            $resp = 'OK';                    
+    
+    }else{
+        $resp = 'Error no existe gasto de este usuario';    
+    }
+            
+    //para cerrar la conexion
+    mysqli_close($con);           
+    $response = ['resultado' => $resp ] ;
+    echo json_encode($response);  
+    exit();
+}
+//-----------------------------------------------------------------------------------------------------------
+//Abonar un gasto de grupo
+if(isset($_GET["AbonarGastoGpo"])){
+    $grupo = $_GET["grupo"];
+    $user = $_GET["user"];
+    $cantidad = $_GET["cantidad"];
+
+    //se revisa que si existe dicho gasto con dicho nombre de usuario
+    $cuery = "SELECT * FROM tbpergpo WHERE namegp = '".$grupo."' AND user = '".$user."'";                        
+    $result = mysqli_query($con,$cuery);
+    while ($row = mysqli_fetch_array($result)){                                                                
+                                
+                $namegp = "".$row['namegp'];                        
+                $userbd = "".$row['user'];                         
+                $cantidadbd = "".$row['cantidad'];  
+                $fecharegis = "".$row['fecharegis'];  
+
+    }
+    $numrow = mysqli_num_rows($result);  
+                   
+    if($numrow > 0) {
+	if($cantidad > $cantidadbd){
+	    $resp = "El abono es mayor, solo debe $cantidadbd";  	
+	}else if($cantidad == $cantidadbd){ 
+            $cuery = "DELETE FROM tbpergpo WHERE  namegp = '".$grupo."' AND user = '".$user."'";      
+            $result = mysqli_query($con,$cuery);      
+            $resp = "Pago";                
+        }else{
+            $cantidadbd = $cantidadbd - $cantidad;                              
+            $cuery = "UPDATE tbpergpo SET cantidad = $cantidadbd WHERE namegp = '".$grupo."' AND user = '".$user."'";      
+            $result = mysqli_query($con,$cuery);      
+            $resp = "Abono"; 
+        }
+    }else{
+        $resp = "Error no existe gasto de este usuario";    
+    }
+            
+    //para cerrar la conexion
+    mysqli_close($con);           
+    $response = ["resultado" => $resp ] ;
+    echo json_encode($response);  
+    exit();
+}
 ?>

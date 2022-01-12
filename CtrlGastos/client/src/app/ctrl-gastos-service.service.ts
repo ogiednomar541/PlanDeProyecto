@@ -134,4 +134,11 @@ export class CtrlGastosServiceService {
     return this.http.get(`${this.url}APIgastos.php?ConsulVen=1&user=${user}`);
   }
 
+  EliminarGastoGpo(grupo:string, user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?EliminarGastoGpo=1&grupo=${grupo}&user=${user}`);
+  }
+
+  Abonar(grupo:string, user:string, cantidad:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?AbonarGastoGpo=1&grupo=${grupo}&user=${user}&cantidad=${cantidad}`);
+  }
 }

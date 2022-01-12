@@ -26,4 +26,43 @@ export class GruposComponent implements OnInit {
       this.Grupos2=datos;
     });
   }
+
+  //eliminar un gasto
+  EliminarGGpo(grupo: string){    
+    console.log(grupo);  
+    console.log(this.user); 
+    if(this.user == '' || grupo == ""){
+      alert("Error No hay usuario o grupo seleccionado");
+    }else{    
+      this.APIphp.EliminarGastoGpo(grupo, this.user).subscribe(datos =>{
+        if(datos['resultado'] === 'OK') {        
+          alert("Deuda pagada");
+          this.ruteador.navigateByUrl('/principal');
+        }else{
+          alert("Error al pagar");
+        }
+      });
+    
+    }
+  }
+
+  abonar(grupo:string, cantidad:string){
+    if(cantidad == "" || grupo == ""){
+      alert("Error no agrego la cantidad a abonar!...");
+    }else{    
+      console.log(grupo);
+      console.log(cantidad);
+      console.log(this.user);
+      this.APIphp.Abonar(grupo, this.user, cantidad).subscribe(datos =>{
+        if((datos["resultado"] == "Abono")) { 
+          alert("Se abono de manera exitosa!..");                  
+          this.persgpo(grupo);
+        }else if((datos["resultado"] == "Pago")){
+          alert("Se pago completamente");
+        }else{
+          alert((datos["resultado"]));
+        }
+      });
+    }
+  }
 }
