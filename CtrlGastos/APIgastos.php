@@ -600,26 +600,117 @@ if(isset($_GET["MostrarUsuarios"])){
 if(isset($_GET["DesabilitarUsuario"])){
     $iduser = $_GET["iduser"];
 
-    $cuery = "SELECT * FROM tbusers WHERE idusers = $iduser ";                        
-    $result = mysqli_query($con,$cuery);              
-    $numrow = mysqli_num_rows($result);                
-    
-    if($numrow > 0) {
-
-        $cuery = "UPDATE tbusers SET estatus = 'B' WHERE idusers = '$iduser'";
-        $result = mysqli_query($con,$cuery);                                   
-
-        $resp = 'OK';                
-        $response = ['resultado' => $resp ]; 
-        
-    }else{            
+    if ($iduser == 1){
         $resp = 'Error Especifique un id de usuario Valido';                
         $response = ['resultado' => $resp] ;
-    }        
+    }else{
+
+        $cuery = "SELECT * FROM tbusers WHERE idusers = $iduser ";                        
+        $result = mysqli_query($con,$cuery);              
+        $numrow = mysqli_num_rows($result);                
+    
+        if($numrow > 0) {
+            $cuery = "UPDATE tbusers SET estatus = 'B' WHERE idusers = '$iduser'";
+            $result = mysqli_query($con,$cuery);                                   
+
+            $resp = 'OK';                
+            $response = ['resultado' => $resp ]; 
+        
+        }else{            
+            $resp = 'Error Especifique un id de usuario Valido';                
+            $response = ['resultado' => $resp] ;
+        }        
+    }    
     //para cerrar la conexion
     mysqli_close($con);                            
     echo json_encode($response);
     exit();            
 }
 
+//Habilitar usuario
+if(isset($_GET["HabilitarUsuario"])){
+    $iduser = $_GET["iduser"];
+
+    if ($iduser == 1){
+        $resp = 'Error Especifique un id de usuario Valido';                
+        $response = ['resultado' => $resp] ;
+    }else{
+
+        $cuery = "SELECT * FROM tbusers WHERE idusers = $iduser ";                        
+        $result = mysqli_query($con,$cuery);              
+        $numrow = mysqli_num_rows($result);                
+        
+        if($numrow > 0) {
+            $cuery = "UPDATE tbusers SET estatus = 'A' WHERE idusers = '$iduser'";
+            $result = mysqli_query($con,$cuery);                                   
+
+            $resp = 'OK';                
+            $response = ['resultado' => $resp ]; 
+        
+        }else{            
+            $resp = 'Error Especifique un id de usuario Valido';                
+            $response = ['resultado' => $resp] ;
+        }     
+    }
+    //para cerrar la conexion
+    mysqli_close($con);                            
+    echo json_encode($response);
+    exit();            
+}
+
+//cambiar pasword de un usuario por id desde administrador
+if(isset($_GET["NewPasUsuario"])){
+    $iduser = $_GET["iduser"];
+    $npas = $_GET["npas"];
+
+    if ($iduser == 1){
+        
+        $resp = 'Error Especifique un id de usuario Valido';                
+        $response = ['resultado' => $resp] ;
+
+    }else{
+        $cuery = "SELECT * FROM tbusers WHERE idusers = $iduser ";                        
+        $result = mysqli_query($con,$cuery);              
+        $numrow = mysqli_num_rows($result);                    
+    
+        if($numrow > 0) {
+            $cuery = "UPDATE tbusers SET pass = '$npas' WHERE idusers = '$iduser'";
+            $result = mysqli_query($con,$cuery);                                   
+
+            $resp = 'OK';                
+            $response = ['resultado' => $resp ];         
+        }else{            
+            $resp = 'Error Especifique un id de usuario Valido';                
+            $response = ['resultado' => $resp] ;
+        }        
+    }    
+    //para cerrar la conexion
+    mysqli_close($con);                            
+    echo json_encode($response);
+    exit();            
+}
+
+    //obtener vencidos desde principal
+    
+    
+    //cambiar pasword de un usuario por id desde administrador
+if(isset($_GET["ConsulVen"])){
+    $user = $_GET["user"];  
+
+    $fecRes = date('Y-m-d');
+    
+        $cuery = "SELECT * FROM gastosper WHERE usuario = '$user' AND fechaex < '$fecRes' AND estado = 'PENDIENTE' ";                        
+        $result = mysqli_query($con,$cuery);              
+        $numrow = mysqli_num_rows($result);                        
+        if($numrow > 0) {                
+            $response = ['resultado' => $numrow];         //, 'fechaphp' => $fecRes 
+        }else{
+            $response = ['resultado' => $numrow];         //, 'fechaphp' => $fecRes 
+        }
+
+    //para cerrar la conexion
+    mysqli_close($con);                            
+    echo json_encode($response);
+    exit();            
+}
 ?>

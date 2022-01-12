@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-01-2022 a las 10:09:09
--- Versión del servidor: 8.0.27
+-- Tiempo de generación: 12-01-2022 a las 01:33:16
+-- Versión del servidor: 8.0.22
 -- Versión de PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,30 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bdprueba`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `articulos`
---
-
-DROP TABLE IF EXISTS `articulos`;
-CREATE TABLE IF NOT EXISTS `articulos` (
-  `codigo` smallint NOT NULL AUTO_INCREMENT,
-  `descripcion` text NOT NULL,
-  `precio` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabla ejemplo';
-
---
--- Volcado de datos para la tabla `articulos`
---
-
-INSERT INTO `articulos` (`codigo`, `descripcion`, `precio`) VALUES
-(1, 'fanta 1l', '1290'),
-(2, 'coca cola 2lt', '1650'),
-(3, 'sprite 2lt', '1290'),
-(4, 'watts naranja 1lt', '1250');
 
 -- --------------------------------------------------------
 
@@ -70,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `gastosper` (
 
 INSERT INTO `gastosper` (`idgasto`, `nombre`, `descripcion`, `tipo`, `cantidad`, `fechaex`, `usuario`, `estado`) VALUES
 (1, 'Gasto de Doritos', 'gasto de unas Sabritas de 240g', 'Comida', '40', '2022-01-13', 'saulo', 'PAGADO'),
-(2, 'Gasto de ropa', 'gasto de unos tennis', 'Otro', '2200', '2022-01-22', 'saulo', 'PENDIENTE'),
-(3, 'Pago luz', 'pagar recibo mensual de luz', 'Hogar', '357', '2022-01-05', 'saulo', 'PENDIENTE'),
+(2, 'Gasto de ropa', 'gasto de unos tennis', 'Otro', '2200', '2022-01-11', 'saulo', 'PENDIENTE'),
+(3, 'Pago luz', 'pagar recibo mensual de luz', 'Hogar', '357', '2022-01-22', 'saulo', 'PENDIENTE'),
 (4, 'Pago de agua', 'pagar recibo de agua ', 'Hogar', '236', '2022-01-12', 'saulo', 'PENDIENTE'),
 (5, 'Consulta', 'Doctor', 'Salud', '600', '2022-01-14', 'saulo', 'PENDIENTE');
 
@@ -168,20 +144,21 @@ CREATE TABLE IF NOT EXISTS `tbusers` (
   PRIMARY KEY (`idusers`),
   UNIQUE KEY `correo_UNIQUE` (`mail`),
   UNIQUE KEY `user_UNIQUE` (`user`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tbusers`
 --
 
 INSERT INTO `tbusers` (`idusers`, `nombre`, `mail`, `fechanac`, `user`, `pass`, `dateregister`, `estatus`) VALUES
-(1, 'Brandon', 'prueba@gmail.com', '0000-00-00', 'brandon', '1234', '2021-12-08', 'A'),
-(2, 'Orlando', 'orlando@gmail.com', '0000-00-00', 'orlando', '1234', '2021-12-08', 'A'),
+(1, 'Administrador', 'Administrador@gmail.com', '0000-00-00', 'AdminAdmin', '1234', '2021-12-08', 'A'),
+(2, 'Orlando', 'orlando@gmail.com', '0000-00-00', 'orlando', '12345', '2021-12-08', 'A'),
 (3, 'Saulo', 'saulo@gmail.com', '0000-00-00', 'saulo', '1234', '2021-12-08', 'A'),
 (4, 'Ramon', 'ramon@gmail.com', '0000-00-00', 'ramon', '1234', '2021-12-08', 'A'),
 (5, 'Diego', 'diego@gmail.com', '0000-00-00', 'diego', '1234', '2021-12-08', 'A'),
 (6, 'carlos jose', 'ramon2000@gmail', '2022-10-30', 'carlos', 'clave', '2021-12-10', 'A'),
-(7, 'saulo', 'saulo@gmail', '2021-12-02', 'saulor', '1234', '2021-12-11', 'A');
+(7, 'saulo', 'saulo@gmail', '2021-12-02', 'saulor', '1234', '2021-12-11', 'A'),
+(8, 'Brandom', 'prueba@gmail.com', '0000-00-00', 'brandon', '1234', '2021-12-08', 'A');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

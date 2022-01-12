@@ -59,12 +59,36 @@ export class GestuserComponent implements OnInit {
 
   //metodo de cambiar de pasword
   Cambiarpas(iduser: string, newpas: string){
-
+    if(iduser == "" || newpas == ""){
+      alert("Especifique el id del usuario y el Nuevo pasword que le desea asignar..");
+    }else{      
+      this.APIphp.CamPasUser(iduser, newpas).subscribe(datos =>{        
+        if((datos['resultado'] == 'OK')) {        
+          alert("Nuevo pasword Asignado");
+          this.MostrarTodos();
+        }else{          
+          alert((datos['resultado']));          
+        }      
+      });                
+    }  
   }
 
   //metodo de habilitar
-  Habilitar(iduser:string){
-
+  Habilitar(iduser:string){    
+    if(iduser == ""){
+      alert("Especifique el id del usuario a Habilitar");
+    }else{      
+      this.APIphp.HabUsers(iduser).subscribe(datos =>{        
+        if((datos['resultado'] == 'OK')) {        
+          alert("Usuario Habilitado");
+          this.MostrarTodos();
+        }else{          
+          alert((datos['resultado']));          
+        }      
+      });                
+    }  
   }
+
+
 
 }

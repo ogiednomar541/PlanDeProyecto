@@ -107,12 +107,31 @@ export class CtrlGastosServiceService {
   }
 
   //Gestion de Usuarios ------------------------------------------------------------------------------------------------
-  MostrarUsers(user: string){
+  
+  //mostrar usaurios
+  MostrarUsers(user: string){ 
     return this.http.get(`${this.url}APIgastos.php?MostrarUsuarios=1&user=${user}`);
   }
-    
+  
+  //Desabilitar usuarios
   DesUsers(id:string):Observable<any>{
     return this.http.get(`${this.url}APIgastos.php?DesabilitarUsuario=1&iduser=${id}`);
+  }
+  
+  //habilitar usuarios
+  HabUsers(id:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?HabilitarUsuario=1&iduser=${id}`);
+  }
+
+  //cambiar de pasword  
+  CamPasUser(id:string, pas: string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?NewPasUsuario=1&iduser=${id}&npas=${pas}`);
+  }
+
+
+  //revisar gastos personales pendientes en la pagina principal para notificar
+  ConsulVenci(user:string):Observable<any>{
+    return this.http.get(`${this.url}APIgastos.php?ConsulVen=1&user=${user}`);
   }
 
 }
