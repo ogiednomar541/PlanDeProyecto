@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 //require("./conexion.php");        
 //$con = mysqli_connect("localhost","root","","bdprueba");   
-$servidor = "localhost"; $usuario = "root"; $contrasenia = "saulo2000"; $nombreBaseDatos = "bdprueba";
+$servidor = "localhost"; $usuario = "root"; $contrasenia = "1234"; $nombreBaseDatos = "bdprueba";
 $con = mysqli_connect($servidor, $usuario, $contrasenia, $nombreBaseDatos, "3306");
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());

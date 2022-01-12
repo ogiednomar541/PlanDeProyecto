@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 12-01-2022 a las 01:33:16
--- Versión del servidor: 8.0.22
+-- Tiempo de generación: 12-01-2022 a las 21:18:27
+-- Versión del servidor: 8.0.27
 -- Versión de PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,6 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `articulos`
+--
+
+DROP TABLE IF EXISTS `articulos`;
+CREATE TABLE IF NOT EXISTS `articulos` (
+  `codigo` smallint NOT NULL AUTO_INCREMENT,
+  `descripcion` text NOT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabla ejemplo';
+
+--
+-- Volcado de datos para la tabla `articulos`
+--
+
+INSERT INTO `articulos` (`codigo`, `descripcion`, `precio`) VALUES
+(1, 'fanta 1l', '1290'),
+(2, 'coca cola 2lt', '1650'),
+(3, 'sprite 2lt', '1290'),
+(4, 'watts naranja 1lt', '1250');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `gastosper`
 --
 
@@ -38,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `gastosper` (
   `usuario` varchar(255) NOT NULL,
   `estado` varchar(255) NOT NULL,
   PRIMARY KEY (`idgasto`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabla de gastos personales';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabla de gastos personales';
 
 --
 -- Volcado de datos para la tabla `gastosper`
@@ -46,10 +70,21 @@ CREATE TABLE IF NOT EXISTS `gastosper` (
 
 INSERT INTO `gastosper` (`idgasto`, `nombre`, `descripcion`, `tipo`, `cantidad`, `fechaex`, `usuario`, `estado`) VALUES
 (1, 'Gasto de Doritos', 'gasto de unas Sabritas de 240g', 'Comida', '40', '2022-01-13', 'saulo', 'PAGADO'),
-(2, 'Gasto de ropa', 'gasto de unos tennis', 'Otro', '2200', '2022-01-11', 'saulo', 'PENDIENTE'),
-(3, 'Pago luz', 'pagar recibo mensual de luz', 'Hogar', '357', '2022-01-22', 'saulo', 'PENDIENTE'),
+(2, 'Gasto de ropa', 'gasto de unos tennis', 'Otro', '2200', '2022-01-22', 'saulo', 'PENDIENTE'),
+(3, 'Pago luz', 'pagar recibo mensual de luz', 'Hogar', '357', '2022-01-05', 'saulo', 'PENDIENTE'),
 (4, 'Pago de agua', 'pagar recibo de agua ', 'Hogar', '236', '2022-01-12', 'saulo', 'PENDIENTE'),
-(5, 'Consulta', 'Doctor', 'Salud', '600', '2022-01-14', 'saulo', 'PENDIENTE');
+(5, 'Consulta', 'Doctor', 'Salud', '600', '2022-01-14', 'saulo', 'PENDIENTE'),
+(6, 'Funda', 'Funda para el telefono', 'Otro', '120', '2022-01-11', 'brandon', 'PENDIENTE'),
+(7, 'Soporte', 'Soporte para el teléfono', 'Otro', '20', '2022-01-14', 'brandon', 'PENDIENTE'),
+(8, 'Tacos', 'Tacos para cenar', 'Comida', '130', '2022-01-20', 'brandon', 'PAGADO'),
+(9, 'Pizza', 'Pizza para la comida', 'Comida', '150', '2022-01-18', 'brandon', 'PENDIENTE'),
+(10, 'Consulta', 'Consulta medica', 'Salud', '600', '2022-01-17', 'brandon', 'PENDIENTE'),
+(11, 'Mesa', 'Mesa de centro', 'Hogar', '1800', '2022-01-31', 'carlos', 'PENDIENTE'),
+(12, 'Comedor', 'mesa para el comedor', 'Hogar', '3500', '2022-01-15', 'carlos', 'PENDIENTE'),
+(13, 'Pastel', 'pastel de cumpleaños', 'Comida', '300', '2022-01-17', 'carlos', 'PENDIENTE'),
+(14, 'Antro', 'Cerveza', 'Diversion', '800', '2022-01-21', 'carlos', 'PENDIENTE'),
+(15, 'sabritas', 'sabritas', 'Comida', '30', '2022-01-13', 'carlos', 'PENDIENTE'),
+(16, 'Feria', 'Juegos en feria', 'Diversion', '400', '2022-01-20', 'brandon', 'PENDIENTE');
 
 -- --------------------------------------------------------
 
@@ -108,22 +143,21 @@ CREATE TABLE IF NOT EXISTS `tbpergpo` (
   `cantidad` decimal(6,2) NOT NULL,
   `fecharegis` date NOT NULL,
   PRIMARY KEY (`idpergpo`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tbpergpo`
 --
 
 INSERT INTO `tbpergpo` (`idpergpo`, `namegp`, `user`, `cantidad`, `fecharegis`) VALUES
-(1, 'Primero', 'brandon', '50.00', '2022-01-07'),
-(2, 'Cena', 'brandon', '150.00', '2022-01-09'),
-(3, 'Primero', 'saulo', '80.00', '2022-01-07'),
+(3, 'Primero', 'saulo', '40.00', '2022-01-07'),
 (4, 'Primero', 'ramon', '70.00', '2022-01-07'),
 (10, 'Cena', 'ramon', '50.00', '2022-01-11'),
-(6, 'Cena', 'saulo', '150.00', '2022-01-09'),
+(13, 'Cena', 'saulo', '130.00', '2022-01-11'),
 (7, 'Cena', 'carlos', '150.00', '2022-01-09'),
 (8, 'Primero', 'carlos', '50.00', '2022-01-11'),
-(9, 'Primero', 'orlando', '40.00', '2022-01-11');
+(9, 'Primero', 'orlando', '40.00', '2022-01-11'),
+(15, 'Cena', 'brandon', '150.00', '2022-01-11');
 
 -- --------------------------------------------------------
 
@@ -152,13 +186,13 @@ CREATE TABLE IF NOT EXISTS `tbusers` (
 
 INSERT INTO `tbusers` (`idusers`, `nombre`, `mail`, `fechanac`, `user`, `pass`, `dateregister`, `estatus`) VALUES
 (1, 'Administrador', 'Administrador@gmail.com', '0000-00-00', 'AdminAdmin', '1234', '2021-12-08', 'A'),
-(2, 'Orlando', 'orlando@gmail.com', '0000-00-00', 'orlando', '12345', '2021-12-08', 'A'),
+(2, 'Orlando', 'orlando@gmail.com', '0000-00-00', 'orlando', '1234', '2021-12-08', 'A'),
 (3, 'Saulo', 'saulo@gmail.com', '0000-00-00', 'saulo', '1234', '2021-12-08', 'A'),
 (4, 'Ramon', 'ramon@gmail.com', '0000-00-00', 'ramon', '1234', '2021-12-08', 'A'),
-(5, 'Diego', 'diego@gmail.com', '0000-00-00', 'diego', '1234', '2021-12-08', 'A'),
+(5, 'Diego', 'diego@gmail.com', '0000-00-00', 'diego', '1234', '2021-12-08', 'B'),
 (6, 'carlos jose', 'ramon2000@gmail', '2022-10-30', 'carlos', 'clave', '2021-12-10', 'A'),
 (7, 'saulo', 'saulo@gmail', '2021-12-02', 'saulor', '1234', '2021-12-11', 'A'),
-(8, 'Brandom', 'prueba@gmail.com', '0000-00-00', 'brandon', '1234', '2021-12-08', 'A');
+(8, 'Brandon', 'prueba@gmail.com', '2021-05-10', 'brandon', '1234', '2021-12-08', 'A');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
