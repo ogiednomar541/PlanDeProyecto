@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CtrlGastosServiceService } from '../ctrl-gastos-service.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-signup',
@@ -10,31 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
-  formularioDeUsuario: FormGroup;
-  
-  constructor(public formulario: FormBuilder,
-    private APIphp: CtrlGastosServiceService,
-    private ruteador: Router
-    ) { 
-      this.formularioDeUsuario = this.formulario.group({
-        nombre: [''],
-        email: [''],
-        fechanac: [''],
-        usuario: [''],
-        contra: [''],
-        confcontra: ['']
-      });
-    }
+    
+  constructor(private APIphp: CtrlGastosServiceService,private ruteador: Router) {}
 
   ngOnInit(): void {
   }
-
   
-  enviarDatos(): any {
-    // console.log("Me presionaste ");
-    console.log(this.formularioDeUsuario.value);        
-    this.APIphp.RegistrarUsuario(this.formularioDeUsuario.value).subscribe( datos => {            
+  enviarDatos(nom: string, email: string, fechaex:string, user:string, pas: string, cpas:string) {           
+    // console.log("Me presionaste ");        
+    this.APIphp.RegistrarUsuario(nom,email,fechaex,user,pas,cpas).subscribe( datos => {            
       //console.log(datos);
       //this.ruteador.navigateByUrl('/login');
       if((datos['resultado'] == 'No')) {                
@@ -44,9 +26,7 @@ export class SignupComponent implements OnInit {
         alert(datos['mesaje']);        
         this.ruteador.navigateByUrl('/login');        
       }      
-    });
-    
-
+    });    
   }
 
 }

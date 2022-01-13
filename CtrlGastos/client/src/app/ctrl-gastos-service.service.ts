@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CtrlGastosServiceService {
    url = 'http://localhost/APIphp/';
+   //https://lopez-saulo-302.000webhostapp.com/APIphp/
+   
   
   //variable que guarda un usuario
   usuarioLog: string = 'sin nombre';
@@ -31,9 +33,8 @@ export class CtrlGastosServiceService {
    }
 
    //metodo para registrar usuario
-  RegistrarUsuario(datosUsuario:any):Observable<any>{
-    console.log("Dentro de registrar usuario");
-    return this.http.post(`${this.url}APIgastos.php?insertarUsuario=1`,datosUsuario);
+  RegistrarUsuario(nom: string, email: string, fechaex:string, user:string, pas: string, cpas:string):Observable<any>{    
+    return this.http.get(`${this.url}APIgastos.php?insertarUsuario=1&nom=${nom}&email=${email}&fechanac=${fechaex}&user=${user}&pas=${pas}&cpas=${cpas}`);
   }
   
   //metodo para obtener los datos del usuario logeado

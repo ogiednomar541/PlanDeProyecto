@@ -1,5 +1,4 @@
 <head>
-
     <link rel="stylesheet" media="all" href="https://assets.splitwise.com/assets/motel-74a0672481f8338539b67ab6072c1584f34cdf9e0b210f406c680b91c33e6818.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&amp;display=swap" rel="stylesheet">
     <script src="https://assets.splitwise.com/packs/js/runtime-f8395826a8d509b810a0.js" defer="defer"></script>
@@ -30,30 +29,30 @@
                         Regístrese ahora
                     </div>
 
-                    <form ngNativeValidate [formGroup]="formularioDeUsuario" (ngSumbit)="enviarDatos()" class="font-mont">
+                    <form class="font-mont">
                         <label for="credentials_name">Nombre</label>
                         <div class="input mb-4">
-                            <input autocapitalize="none" type="text" formControlName="nombre" required>
+                            <input autocapitalize="none" type="text" #nombre required>
                         </div>
 
                         <label for="credentials_identity">Correo electrónico</label>
                         <div class="input mb-4">
-                            <input autocapitalize="none" type="email" formControlName="email" required>
+                            <input autocapitalize="none" type="email" #email required>
                         </div>
 
                         <label for="credentials_date">Fecha de nacimiento</label>
                         <div class="input mb-4">
-                            <input style="margin-left: 35%;" type="date" value="02-01-2000" min="01-01-1931" max="01-01-2002" formControlName="fechanac" required>
+                            <input style="margin-left: 35%;" type="date" value="02-01-2000" min="01-01-1931" max="01-01-2002" #fechanac required>
                         </div>
 
                         <label for="credentials_username">Usuario</label>
                         <div class="input mb-4">
-                            <input autocapitalize="none" type="text" formControlName="usuario" required>
+                            <input autocapitalize="none" type="text" #usuario required>
                         </div>
 
                         <label for="credentials_password">Contraseña</label>
                         <div class="input mb-4">
-                            <input type="text" formControlName="contra" required>
+                            <input type="text" #contra required>
                             <div class="invalid-feedback">
                                 Please provide a valid zip.
                             </div>
@@ -61,12 +60,11 @@
 
                         <label for="credentials_password_confirmation">Confirmar Contraseña</label>
                         <div class="input mb-4">
-                            <input type="password" formControlName="confcontra" required>
+                            <input type="password" #confcontra required>
                         </div>
 
                         <div class="btn-group" role="group" aria-label="">
-                            <!--<button type="submit" class="btn btn-success">Registrarme</button>-->
-                            <button type="button" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" (click)="enviarDatos()">Registar</button>
+                            <button type="button" class="cta-button block font-mont rounded bg-teal-darker text-white shadow px-4 py-2 text-center w-full" (click)="enviarDatos(nombre.value, email.value, fechanac.value, usuario.value, contra.value, confcontra.value)">Registar</button>
                         </div>
 
                     </form>
@@ -74,9 +72,4 @@
             </div>
         </div>
     </main>
-
-
-
-
-
 </body>
