@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CtrlGastosServiceService {
-   url = 'http://localhost/APIphp/';
-   //https://lopez-saulo-302.000webhostapp.com/APIphp/
-   
+
+   url = 'https://lopez-saulo-302.000webhostapp.com/APIphp/';
+         
   
   //variable que guarda un usuario
   usuarioLog: string = 'sin nombre';
